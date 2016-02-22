@@ -15,6 +15,7 @@ import streaming.entity.Film;
 import streaming.entity.Genre;
 import streaming.entity.Pays;
 import streaming.entity.Realisateur;
+import streaming.exception.SynopsisVideException;
 import streaming.service.DBService;
 import streaming.service.EpisodeService;
 import streaming.service.FilmService;
@@ -42,7 +43,7 @@ public class StreamingTest {
     private SerieService serieserv = new SerieService();
 
     //@Before
-    public void initialisationBaseOK() {
+    public void initialisationBaseOK() throws SynopsisVideException {
         dbs.supprimerTous();
 
         //Ajout des genres
