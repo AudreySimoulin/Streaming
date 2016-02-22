@@ -10,11 +10,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import streaming.entity.Episode;
 import streaming.entity.Film;
 import streaming.entity.Genre;
+import streaming.entity.Lien;
 import streaming.entity.Pays;
 import streaming.entity.Realisateur;
+import streaming.entity.Saison;
+import streaming.entity.Serie;
 import streaming.service.DBService;
 import streaming.service.EpisodeService;
 import streaming.service.FilmService;
@@ -41,7 +46,7 @@ public class StreamingTest {
     private SaisonService saisonserv = new SaisonService();
     private SerieService serieserv = new SerieService();
 
-    //@Before
+    @Before
     public void initialisationBaseOK() {
         dbs.supprimerTous();
 
@@ -346,9 +351,50 @@ public class StreamingTest {
             fserv.ajouter(f1);
         }
 
+        // Ajout de la serie Dexter
+        Serie s = new Serie();
+        s.setId(1L);
+        s.setPays(pserv.rechercherParId(2L));
+        s.setTitre("Dexter");
+        serieserv.ajouter(s);
+        
+        // Ajout de 8 Saisons
+        for (long numS = 1; numS <= 8; numS++) {
+
+            Saison sa = new Saison();
+            sa.setId(numS);
+            sa.setNumeroSaison(numS);
+            sa.setSerie(s);
+            saisonserv.ajouter(sa);
+            
+            // Ajout des Episodes
+            for (long numE = 1; numE <= numS; numE++) {
+                Episode e = new Episode();
+//                e.setId(numE);
+                e.setSaison(sa);
+                sa.getListeEpisodes().add(e); 
+                eserv.ajouter(e);
+                
+                //Ajout des Liens
+                for (long numL = 1; numL <= numE; numL++){
+                    Lien l = new Lien();
+//                    l.setId(numL);
+                    l.setEpisode(e);
+                    e.getListeLiens().add(l);
+                    lserv.ajouter(l);
+                }
+            }
+
+        }
+
     }
 
-    //@Test
+@Test
+public void craetionSerieOK(){
+    Persistence.createEntityManagerFactory("StreamingPU");
+}
+    
+//@Test
     public void listerFilmParGenreOK() {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         for (Film f : em.find(Genre.class, 1L).getListeFilmsParGenre()) {
@@ -482,16 +528,16 @@ public class StreamingTest {
 
     //@Test
     public void filmsParRealisateur() {
-        
+
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         Collection<Object[]> nbFilmParRealisateur = em.createQuery("SELECT COUNT (f) AS total, r FROM Realisateur r JOIN r.listeFilmsParRealisateur f GROUP BY r ORDER BY total").getResultList();
-        
+
         for (Object[] r : nbFilmParRealisateur) {
-            
+
             long total = (long) r[0];
             Realisateur real = (Realisateur) r[1];
-            
-            System.out.println( real.getNom() + " " + real.getPrenom() + " " + total);
+
+            System.out.println(real.getNom() + " " + real.getPrenom() + " " + total);
         }
     }
 }
