@@ -480,7 +480,7 @@ public class StreamingTest {
         System.out.println(moyenneAnnee);
     }
 
-    @Test
+    //@Test
     public void filmsParRealisateur() {
         
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
