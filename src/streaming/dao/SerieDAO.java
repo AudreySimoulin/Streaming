@@ -37,7 +37,7 @@ public class SerieDAO {
     
     public List<Serie> listerParTitre(String titreSerie){
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        return em.createQuery("SELECT s FROM Serie s WHERE s.titre LIKE '%"+titreSerie+"%'").getResultList();
+        return em.createQuery("SELECT s FROM Serie s WHERE UPPER (s.titre) LIKE UPPER('%"+titreSerie+"%')").getResultList();
     }
 
 
