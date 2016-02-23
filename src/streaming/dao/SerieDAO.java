@@ -33,6 +33,12 @@ public class SerieDAO {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT s FROM Serie s").getResultList();
 
+    } 
+    
+    public List<Serie> listerParTitre(String titreSerie){
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        return em.createQuery("SELECT s FROM Serie s WHERE UPPER (s.titre) LIKE UPPER('%"+titreSerie+"%')").getResultList();
     }
+
 
 }

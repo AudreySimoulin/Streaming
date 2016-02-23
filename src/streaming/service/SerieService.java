@@ -36,5 +36,14 @@ public class SerieService {
     public List<Serie> listerTous() {
         return seriedao.listerTous();
     }
+    
+    public List<Serie> listerParPays(Long idPays){
+        return new PaysService().rechercherParId(idPays).getListeSeries();
+    } 
+    
+    public List<Serie> listerParTitre(String titreSerie){
+        return seriedao.listerParTitre(titreSerie);
+    }
+    
 
 }
