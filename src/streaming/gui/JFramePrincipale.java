@@ -42,6 +42,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbFilm.setFocusable(false);
         jbFilm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbFilm.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbFilm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFilmActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbFilm);
 
         jbSerie.setText("Série");
@@ -72,6 +77,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFilmActionPerformed
+    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbFilmActionPerformed
 
     /**
      * @param args the command line arguments
