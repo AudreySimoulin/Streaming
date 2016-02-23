@@ -47,7 +47,7 @@ public class StreamingTest {
     private SaisonService saisonserv = new SaisonService();
     private SerieService serieserv = new SerieService();
 
-//    @Before
+    @Before
     public void initialisationBaseOK() throws SynopsisVideException {
         dbs.supprimerTous();
 
@@ -410,16 +410,16 @@ public class StreamingTest {
         Persistence.createEntityManagerFactory("StreamingPU");
     }
 
-    @Test
+    //@Test
     public void listerSeriesParTitreTestOK() {
         List<Serie> l = serieserv.listerParTitre("Dext");
         for (Serie s : l) {
             System.out.println(s.getTitre());
         }
-    }    
-        
+    }
+
 //@Test
-public void listerSeriesParPaysTestOK() {
+    public void listerSeriesParPaysTestOK() {
         List<Serie> l = serieserv.listerParPays(2L);
         for (Serie s : l) {
             System.out.println(s.getTitre());

@@ -11,65 +11,47 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.swing.JFrame;
-
-import streaming.entity.Film;
-import streaming.entity.Genre;
 import streaming.entity.Pays;
+import streaming.entity.Serie;
 import streaming.exception.SynopsisVideException;
-import streaming.service.FilmService;
-import streaming.service.GenreService;
 import streaming.service.PaysService;
+import streaming.service.SerieService;
 
 /**
  *
  * @author admin
  */
-public class JDialogEditFilm extends javax.swing.JDialog {
+public class JDialogEditSerie extends javax.swing.JDialog {
 
-    private FilmService fserv = new FilmService();
-    private GenreService gserv = new GenreService();
+    private SerieService serieserv = new SerieService();
     private PaysService pserv = new PaysService();
 
-    private List<Pays> listePays = new ArrayList<>();
-    private List<Genre> listeGenre = new ArrayList<Genre>();
+    private List<Pays> listePays = new ArrayList<Pays>();
 
-    private JPanelListeFilm jpFilm = null;
+    private JPanelListeSerie jpSerie = null;
 
     /**
-     * Creates new form JDialogEditFilm
+     * Creates new form JDialogEditSerie
      */
-    public JDialogEditFilm(java.awt.Frame parent, boolean modal, JPanelListeFilm jp) {
+    public JDialogEditSerie(java.awt.Frame parent, boolean modal, JPanelListeSerie jp) {
         super(parent, modal);
         initComponents();
         listePays = pserv.listerTous();
-        listeGenre = gserv.listerTous();
-        initialiseComboBoxGenre();
-        initialiseComboBoxPays();
+        initialiseComboBox();
 
-        this.jpFilm = jp;
-
+        this.jpSerie = jp;
     }
 
-    private JDialogEditFilm(java.awt.Frame parent, boolean modal) {
+    public JDialogEditSerie(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public void initialiseComboBoxPays() {
+    public void initialiseComboBox() {
         jComboBoxPays.removeAllItems();
         for (Pays p : listePays) {
             jComboBoxPays.addItem(p.getNom());
         }
-
-    }
-
-    public void initialiseComboBoxGenre() {
-        jComboBoxGenre.removeAllItems();
-        for (Genre g : listeGenre) {
-            jComboBoxGenre.addItem(g.getNom());
-        }
-
     }
 
     /**
@@ -81,99 +63,93 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelID = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabelTitre = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextTitre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTitre = new javax.swing.JTextField();
+        jLabelAnnee = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextAnnee = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jTextFieldAnnee = new javax.swing.JTextField();
+        jLabelPays = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jComboBoxPays = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelSynopsis = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jComboBoxReal = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        jTextFieldSynopsis = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jTextSynopsis = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jComboBoxGenre = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jBAjouter = new javax.swing.JButton();
+        jButtonAjouter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(8, 3));
+        getContentPane().setLayout(new java.awt.GridLayout(6, 3));
 
-        jLabel1.setText("ID");
-        getContentPane().add(jLabel1);
+        jLabelID.setText("ID");
+        getContentPane().add(jLabelID);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
 
-        jTextID.setEditable(false);
-        getContentPane().add(jTextID);
+        jTextField1.setEditable(false);
+        getContentPane().add(jTextField1);
 
-        jLabel2.setText("Titre");
-        getContentPane().add(jLabel2);
+        jLabelTitre.setText("Titre");
+        getContentPane().add(jLabelTitre);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2);
-        getContentPane().add(jTextTitre);
+        getContentPane().add(jTextFieldTitre);
 
-        jLabel3.setText("Année de production");
-        getContentPane().add(jLabel3);
+        jLabelAnnee.setText("Année de production");
+        getContentPane().add(jLabelAnnee);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3);
-        getContentPane().add(jTextAnnee);
+        getContentPane().add(jTextFieldAnnee);
 
-        jLabel4.setText("Pays");
-        getContentPane().add(jLabel4);
+        jLabelPays.setText("Pays");
+        getContentPane().add(jLabelPays);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel4);
@@ -186,144 +162,90 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         });
         getContentPane().add(jComboBoxPays);
 
-        jLabel5.setText("Réalisateur");
-        getContentPane().add(jLabel5);
+        jLabelSynopsis.setText("Synopsis");
+        getContentPane().add(jLabelSynopsis);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel5);
-
-        jComboBoxReal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxReal);
-
-        jLabel6.setText("Synopsis");
-        getContentPane().add(jLabel6);
+        getContentPane().add(jTextFieldSynopsis);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel6);
-        getContentPane().add(jTextSynopsis);
-
-        jLabel7.setText("Genre");
-        getContentPane().add(jLabel7);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel9);
-
-        jComboBoxGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxGenre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxGenreActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jComboBoxGenre);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
+            .addGap(0, 136, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel7);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 142, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel8);
-
-        jBAjouter.setText("Ajouter");
-        jBAjouter.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAjouter.setText("Ajouter");
+        jButtonAjouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAjouterActionPerformed(evt);
+                jButtonAjouterActionPerformed(evt);
             }
         });
-        getContentPane().add(jBAjouter);
+        getContentPane().add(jButtonAjouter);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAjouterActionPerformed
-        // Ajout d'un nouveau film
+    private void jButtonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAjouterActionPerformed
+        // Ajout d'une nouvelle série
+        Serie serie = new Serie();
 
-        Film f = new Film();
-        f.setAnnee(Long.parseLong(jTextAnnee.getText()));
-        f.setTitre(jTextTitre.getText());
-        f.setSynopsis(jTextSynopsis.getText());
+        serie.setTitre(jTextFieldTitre.getText());
+        serie.setAnnee(Long.parseLong(jTextFieldAnnee.getText()));
+        serie.setSynopsis(jTextFieldSynopsis.getText());
 
         for (Pays p : listePays) {
-            if (p.getNom() == jComboBoxPays.getSelectedItem()) {
-                f.setPays(p);
+            if (p.getNom().equals(jComboBoxPays.getSelectedItem())) {
+                serie.setPays(p);
             }
         }
 
-        for (Genre g : listeGenre) {
-            if (g.getNom() == jComboBoxGenre.getSelectedItem()) {
-                f.setGenre(g);
-            }
-        }
         try {
-            fserv.ajouter(f);
-
-            // TODO add your handling code here:
+            serieserv.ajouter(serie);
         } catch (SynopsisVideException ex) {
-            
+
         }
         
-        jpFilm.rafraichirJTable();
-        this.setVisible(false);//Ferme Fenetre
-        this.dispose();//Libère mémoire
+        jpSerie.rafraichirJTable();
+        this.setVisible(false);
+        this.dispose();
 
-
-    }//GEN-LAST:event_jBAjouterActionPerformed
+    }//GEN-LAST:event_jButtonAjouterActionPerformed
 
     private void jComboBoxPaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPaysActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxPaysActionPerformed
 
-    private void jComboBoxGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGenreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxGenreActionPerformed
+
+    }//GEN-LAST:event_jComboBoxPaysActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,31 +261,23 @@ public class JDialogEditFilm extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(JDialogEditSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(JDialogEditSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(JDialogEditSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDialogEditSerie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogEditFilm dialog = new JDialogEditFilm(new javax.swing.JFrame(), true);
+                JDialogEditSerie dialog = new JDialogEditSerie(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -376,17 +290,13 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAjouter;
-    private javax.swing.JComboBox<String> jComboBoxGenre;
+    private javax.swing.JButton jButtonAjouter;
     private javax.swing.JComboBox<String> jComboBoxPays;
-    private javax.swing.JComboBox<String> jComboBoxReal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelAnnee;
+    private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelPays;
+    private javax.swing.JLabel jLabelSynopsis;
+    private javax.swing.JLabel jLabelTitre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -394,11 +304,9 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextAnnee;
-    private javax.swing.JTextField jTextID;
-    private javax.swing.JTextField jTextSynopsis;
-    private javax.swing.JTextField jTextTitre;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldAnnee;
+    private javax.swing.JTextField jTextFieldSynopsis;
+    private javax.swing.JTextField jTextFieldTitre;
     // End of variables declaration//GEN-END:variables
 }

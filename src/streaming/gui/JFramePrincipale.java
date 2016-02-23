@@ -5,6 +5,9 @@
  */
 package streaming.gui;
 
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author admin
@@ -14,8 +17,19 @@ public class JFramePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form JFramePrincipale
      */
+    JPanel jpCentral = null;
+
     public JFramePrincipale() {
         initComponents();
+    }
+
+    private void supprimerPanneaux() {
+        if (jpCentral == null) {
+            return;
+        }
+        //supprime le panneau central
+        this.remove(this.jpCentral);
+        jpCentral = null;
     }
 
     /**
@@ -53,6 +67,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbSerie.setFocusable(false);
         jbSerie.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbSerie.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSerieActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbSerie);
 
         jbPays.setText("Pays");
@@ -79,9 +98,24 @@ public class JFramePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFilmActionPerformed
-    
-        // TODO add your handling code here:
+        // Accés à la catégorie film
+        supprimerPanneaux();
+        
+        jpCentral = new JPanelListeFilm();
+        add(jpCentral, BorderLayout.CENTER);
+        this.pack();
+        
     }//GEN-LAST:event_jbFilmActionPerformed
+
+    private void jbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSerieActionPerformed
+        // Accés à la catégorie série
+        supprimerPanneaux();
+        
+        jpCentral = new JPanelListeSerie();
+        add(jpCentral, BorderLayout.CENTER);
+        this.pack();
+        
+    }//GEN-LAST:event_jbSerieActionPerformed
 
     /**
      * @param args the command line arguments

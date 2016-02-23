@@ -29,6 +29,15 @@ public class Serie implements Serializable {
     private Long id;
     private String titre;
     private String synopsis;
+    private Long annee;
+
+    public Long getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Long annee) {
+        this.annee = annee;
+    }
 
     @ManyToOne
     @JoinColumn(name = "PAYS_ID")
