@@ -47,7 +47,7 @@ public class StreamingTest {
     private SaisonService saisonserv = new SaisonService();
     private SerieService serieserv = new SerieService();
 
-    //@Before
+//    @Before
     public void initialisationBaseOK() throws SynopsisVideException {
         dbs.supprimerTous();
 
@@ -157,7 +157,7 @@ public class StreamingTest {
             rserv.ajouter(r1);
         }
 
-        //Ajout des films
+//        //Ajout des films
         {
             Film f1 = new Film();
             Genre g = gserv.rechercherParId(1L);
@@ -168,6 +168,7 @@ public class StreamingTest {
             f1.setTitre("Django Unchained");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -185,6 +186,7 @@ public class StreamingTest {
             f1.setTitre("Kill Bill");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -202,6 +204,7 @@ public class StreamingTest {
             f1.setTitre("Kill Bill 2");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -219,6 +222,7 @@ public class StreamingTest {
             f1.setTitre("Jackie Brown");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -236,6 +240,7 @@ public class StreamingTest {
             f1.setTitre("Sin City");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -253,6 +258,7 @@ public class StreamingTest {
             f1.setTitre("Bad Taste");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -270,6 +276,7 @@ public class StreamingTest {
             f1.setTitre("Braindead");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -287,6 +294,7 @@ public class StreamingTest {
             f1.setTitre("Le Hobbit");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -304,6 +312,7 @@ public class StreamingTest {
             f1.setTitre("Polisse");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r);
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
@@ -322,6 +331,7 @@ public class StreamingTest {
             f1.setTitre("Big Lebowski");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(r1);
             f1.getListeRealisateurs().add(r2);
             p.getListeFilmsParPays().add(f1);
@@ -342,23 +352,24 @@ public class StreamingTest {
             f1.setTitre("Ave Cesar");
             f1.setGenre(g);
             f1.setPays(p);
+            f1.setSynopsis("blabla");
             f1.getListeRealisateurs().add(rserv.rechercherParId(1L));
             f1.getListeRealisateurs().add(rserv.rechercherParId(2L));
-
             p.getListeFilmsParPays().add(f1);
             g.getListeFilmsParGenre().add(f1);
             r1.getListeFilmsParRealisateur().add(f1);
             r2.getListeFilmsParRealisateur().add(f1);
             fserv.ajouter(f1);
         }
-
         // Ajout de la serie Dexter
         Serie s = new Serie();
         s.setId(1L);
         s.setPays(pserv.rechercherParId(2L));
         s.setTitre("Dexter");
+        s.setSynopsis("Blabla");
         serieserv.ajouter(s);
-        
+        pserv.rechercherParId(2L).getListeSeries().add(s);
+
         // Ajout de 8 Saisons
         for (long numS = 1; numS <= 8; numS++) {
 
@@ -367,22 +378,25 @@ public class StreamingTest {
             sa.setNumeroSaison(numS);
             sa.setSerie(s);
             saisonserv.ajouter(sa);
-            
+            s.getListeSaisons().add(sa);
+
             // Ajout des Episodes
             for (long numE = 1; numE <= numS; numE++) {
                 Episode e = new Episode();
 //                e.setId(numE);
                 e.setSaison(sa);
-                sa.getListeEpisodes().add(e); 
+                sa.getListeEpisodes().add(e);
                 eserv.ajouter(e);
-                
+                sa.getListeEpisodes().add(e);
+
                 //Ajout des Liens
-                for (long numL = 1; numL <= numE; numL++){
+                for (long numL = 1; numL <= numE; numL++) {
                     Lien l = new Lien();
 //                    l.setId(numL);
                     l.setEpisode(e);
                     e.getListeLiens().add(l);
                     lserv.ajouter(l);
+                    e.getListeLiens().add(l);
                 }
             }
 
@@ -390,11 +404,28 @@ public class StreamingTest {
 
     }
 
-@Test
-public void craetionSerieOK(){
-    Persistence.createEntityManagerFactory("StreamingPU");
-}
-    
+//@Test
+    public void craetionSerieOK() {
+        Persistence.createEntityManagerFactory("StreamingPU");
+    }
+
+    @Test
+    public void listerSeriesParTitreTestOK() {
+        List<Serie> l = serieserv.listerParTitre("Dext");
+        for (Serie s : l) {
+            System.out.println(s.getTitre());
+        }
+    }    
+        
+//@Test
+public void listerSeriesParPaysTestOK() {
+        List<Serie> l = serieserv.listerParPays(2L);
+        for (Serie s : l) {
+            System.out.println(s.getTitre());
+        }
+
+    }
+
 //@Test
     public void listerFilmParGenreOK() {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
