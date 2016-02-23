@@ -7,13 +7,14 @@ import javax.persistence.metamodel.StaticMetamodel;
 import streaming.entity.Pays;
 import streaming.entity.Saison;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-02-22T09:56:45")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-02-23T16:11:22")
 @StaticMetamodel(Serie.class)
 public class Serie_ { 
 
     public static volatile SingularAttribute<Serie, String> titre;
     public static volatile SingularAttribute<Serie, Long> id;
     public static volatile SingularAttribute<Serie, String> synopsis;
+    public static volatile SingularAttribute<Serie, Long> annee;
     public static volatile ListAttribute<Serie, Saison> listeSaisons;
     public static volatile SingularAttribute<Serie, Pays> pays;
 

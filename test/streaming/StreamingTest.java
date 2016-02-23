@@ -405,7 +405,7 @@ public class StreamingTest {
 
     }
 
-//@Test
+@Test
     public void craetionSerieOK() {
         Persistence.createEntityManagerFactory("StreamingPU");
     }
@@ -592,7 +592,7 @@ public class StreamingTest {
         }
     }
 
-    @Test
+    //@Test
     public void listerFilmsParTitreOuReal() {
         List<Film> filmsParTitreOuReal = fserv.listerParTitreOuRealisateur("tar");
         //System.out.println(filmsParGenre.size());

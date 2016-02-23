@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
 import streaming.entity.Serie;
+import streaming.service.SerieService;
 
 /**
  *
@@ -19,6 +20,7 @@ public class TableModelListeSerie extends DefaultTableModel {
 
     private List<Serie> serie = null;
     private int nbSerie = 0;
+    private SerieService serieserv = new SerieService();
 
     public List<Serie> getSerie() {
         return serie;
@@ -27,9 +29,7 @@ public class TableModelListeSerie extends DefaultTableModel {
     public TableModelListeSerie() {
 
         setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Synopsis"});
-
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        serie = em.createQuery("SELECT s FROM Serie s ORDER BY s.titre").getResultList();
+        serie = serieserv.listerTous();
         nbSerie = serie.size();
 
     }

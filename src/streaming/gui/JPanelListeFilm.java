@@ -14,22 +14,23 @@ import streaming.entity.Film;
  * @author admin
  */
 public class JPanelListeFilm extends javax.swing.JPanel {
-    
+
     private TableModelListeFilm tModelListeFilm = null;
 
     /**
      * Creates new form JPanelListeFilm
      */
+    public void rafraichirJTable() {
+        tModelListeFilm = new TableModelListeFilm();
+        jTableFilm.setModel(tModelListeFilm);
+        jTableFilm.repaint();
+      
+    }
+
     public JPanelListeFilm() {
         initComponents();
         rafraichirJTable();
-       
-    }
-    
-    public void rafraichirJTable(){
-      tModelListeFilm = new TableModelListeFilm();
-      jTableFilm.setModel(tModelListeFilm);
-      jTableFilm.repaint();
+
     }
 
     /**
@@ -92,25 +93,25 @@ public class JPanelListeFilm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSupprimerFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerFilmActionPerformed
-    int i = jTableFilm.getSelectedRow();
-    if(i==-1)
-        return;
-    Film f = tModelListeFilm.getFilm().get(i);
-    Long filmId = f.getId();
-    
-    EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-    em.getTransaction().begin();
-    f = em.find(Film.class, filmId);
-    em.remove(f);
-    em.getTransaction().commit();
-    rafraichirJTable();
+        int i = jTableFilm.getSelectedRow();
+        if (i == -1) {
+            return;
+        }
+        Film f = tModelListeFilm.getFilm().get(i);
+        Long filmId = f.getId();
+
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        f = em.find(Film.class, filmId);
+        em.remove(f);
+        em.getTransaction().commit();
+        rafraichirJTable();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerFilmActionPerformed
 
     private void jbNouveauFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauFilmActionPerformed
-     new JDialogEditFilm(null, true, this).setVisible(true);//Affiche boite de dialogue
-     
+        new JDialogEditFilm(null, true, this).setVisible(true);//Affiche boite de dialogue
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbNouveauFilmActionPerformed
