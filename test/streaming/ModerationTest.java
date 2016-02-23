@@ -24,7 +24,7 @@ public class ModerationTest {
         Film f = new Film();
         f.setId(12L);
         f.setTitre("Coucou");
-        f.setSynopsis("coucou zut");
+        f.setSynopsis("coucou");
         fserv.ajouter(f);
         System.out.println(f.getTitre() + " " + f.getSynopsis());
 

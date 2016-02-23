@@ -34,4 +34,19 @@ public class FilmDAO {
         return em.createQuery("SELECT f FROM Film f").getResultList();
 
     }
+    
+    public List<Film> listerParGenre(Long idGenre){
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        return (List<Film>) em.createQuery("SELECT f FROM Film f JOIN f.genre g WHERE g.id = " + idGenre).getResultList();
+    }
+    
+    public List<Film> listerParPays(Long idPays){
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        return em.createQuery("SELECT f FROM Film f JOIN f.pays p WHERE p.id = " + idPays).getResultList();
+    }
+    
+    public List<Film> listerParTitreOuRealisateur(String string){
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        return em.createQuery("SELECT DISTINCT f FROM Film f JOIN f.listeRealisateurs r WHERE UPPER(f.titre) LIKE UPPER ('%" + string + "%') OR UPPER(r.prenom) LIKE UPPER ('%" + string + "%') OR UPPER(r.nom) LIKE UPPER ('%" + string + "%')").getResultList();
+    }
 }

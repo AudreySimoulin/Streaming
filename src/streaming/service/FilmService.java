@@ -28,7 +28,7 @@ public class FilmService {
         f.setSynopsis(f.getSynopsis().replaceAll("zut", "**Flûte**"));
         f.setTitre(f.getTitre().replaceAll("zut", "**Flûte**"));
 
-        //fdao.ajouter(f);
+        fdao.ajouter(f);
     }
 
     public Film rechercherParId(Long id) {
@@ -39,8 +39,16 @@ public class FilmService {
         return fdao.listerTous();
     }
     
-//    public List<Film> filmsParGenre(){
-//        EntityManager em = Persistence.createEntityManagerFactory("Streamin")
-//    }
+    public List<Film> listerParGenre(Long idGenre){
+        return fdao.listerParGenre(idGenre);
+    }
+    
+    public List<Film> listerParPays(Long idPays){
+        return fdao.listerParPays(idPays);
+    }
+    
+    public List<Film> listerParTitreOuRealisateur(String string){
+        return fdao.listerParTitreOuRealisateur(string);
+    }
 
 }
