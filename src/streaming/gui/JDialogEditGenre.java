@@ -52,6 +52,7 @@ public class JDialogEditGenre extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ajout d'un genre");
         getContentPane().setLayout(new java.awt.GridLayout(3, 3));
 
         jLabelId.setText("ID");
