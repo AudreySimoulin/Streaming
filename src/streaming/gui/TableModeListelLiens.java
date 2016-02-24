@@ -8,6 +8,7 @@ package streaming.gui;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Lien;
 import streaming.service.LienService;
 
@@ -15,6 +16,7 @@ import streaming.service.LienService;
  *
  * @author admin
  */
+
 public class TableModeListelLiens extends DefaultTableModel{
     
      @Autowired
@@ -25,7 +27,30 @@ public class TableModeListelLiens extends DefaultTableModel{
     public List<Lien> getLiens() {
         return liens;
     }
-    private int nbliens = 0;
+    private int nbLiens = 0;
     
+    public TableModeListelLiens(){
+        setColumnIdentifiers(new String[]{"ID","URL"});
+        liens=lserv.listerTous();
+        nbLiens = liens.size();
+    }
+    
+     @Override
+    public int getRowCount(){
+        return nbLiens;
+    }
+    
+     @Override
+    public Object getValueAt(int row, int column){
+        Lien l = liens.get(row);
+        
+        if (column==0)
+            return l.getId();
+        
+        if (column==1)
+            return l.getUrl();
+        
+        return "***ERROR***";
+    }
     
 }

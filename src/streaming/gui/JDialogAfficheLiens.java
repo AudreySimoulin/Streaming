@@ -5,7 +5,10 @@
  */
 package streaming.gui;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import streaming.entity.Lien;
 import streaming.service.LienService;
 
 /**
@@ -19,6 +22,8 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     
     @Autowired
     private LienService lserv;
+    
+    private List<Lien> listeLiens = new ArrayList<>();
 
     /**
      * Creates new form JDialogAfficheLiens
@@ -26,6 +31,14 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     public JDialogAfficheLiens(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        rafraichirJTable();
+        listeLiens = lserv.listerTous();
+    }
+    
+    public void rafraichirJTable(){        
+       TableModeListelLiens tbModelListeLiens = new TableModeListelLiens();
+       jTableLiens.setModel(tbModelListeLiens);
+       jTableLiens.repaint();
     }
 
     /**
@@ -38,11 +51,11 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableLiens = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLiens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +66,7 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableLiens);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,6 +136,6 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableLiens;
     // End of variables declaration//GEN-END:variables
 }
