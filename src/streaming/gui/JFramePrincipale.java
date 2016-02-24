@@ -49,6 +49,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbGenre = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Streaming");
 
         jToolBar1.setRollover(true);
 
@@ -89,6 +90,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbReal.setFocusable(false);
         jbReal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbReal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbReal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRealActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbReal);
 
         jbGenre.setText("Genre");
@@ -110,41 +116,48 @@ public class JFramePrincipale extends javax.swing.JFrame {
     private void jbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFilmActionPerformed
         // Accés à la catégorie film
         supprimerPanneaux();
-        
+
         jpCentral = new JPanelListeFilm();
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
-        
+
     }//GEN-LAST:event_jbFilmActionPerformed
 
     private void jbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSerieActionPerformed
         // Accés à la catégorie série
         supprimerPanneaux();
-        
+
         jpCentral = new JPanelListeSerie();
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
-        
+
     }//GEN-LAST:event_jbSerieActionPerformed
 
     private void jbGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGenreActionPerformed
         // Accés à la catégorie genre
         supprimerPanneaux();
-        
+
         jpCentral = new JPanelListeGenre();
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
     }//GEN-LAST:event_jbGenreActionPerformed
     private void jbPaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaysActionPerformed
-
+        // Accés à la catégorie pays
         supprimerPanneaux();
-        
+
         jpCentral = new JPanelListePays();
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbPaysActionPerformed
+
+    private void jbRealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRealActionPerformed
+        // Accés à la catégorie réalisateur
+        supprimerPanneaux();
+        
+        jpCentral = new JPanelListeRealisateur();
+        add(jpCentral, BorderLayout.CENTER);
+        this.pack();
+    }//GEN-LAST:event_jbRealActionPerformed
 
     /**
      * @param args the command line arguments
