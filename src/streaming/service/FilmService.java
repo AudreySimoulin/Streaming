@@ -8,6 +8,8 @@ package streaming.service;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import streaming.dao.FilmDAO;
 import streaming.entity.Film;
 import streaming.exception.SynopsisVideException;
@@ -16,9 +18,12 @@ import streaming.exception.SynopsisVideException;
  *
  * @author admin
  */
+
+@Service
 public class FilmService {
 
-    FilmDAO fdao = new FilmDAO();
+    @Autowired
+    FilmDAO fdao;
 
     public void ajouter(Film f) throws SynopsisVideException {
         if ( f.getSynopsis() == null ||f.getSynopsis().isEmpty()) {

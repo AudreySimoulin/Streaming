@@ -8,12 +8,15 @@ package streaming.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.stereotype.Repository;
 import streaming.entity.Episode;
 
 /**
  *
  * @author admin
  */
+
+@Repository
 public class EpisodeDAO {
 
     public void ajouter(Episode e) {
