@@ -7,7 +7,9 @@ package streaming.gui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
+import streaming.service.PaysService;
 
 
 /**
@@ -17,6 +19,8 @@ import streaming.entity.Pays;
 public class JPanelListePays extends javax.swing.JPanel {
 
     private TableModelListePays tModelListePays = null;
+    @Autowired
+    private PaysService pserv ;
 
     /**
      * Creates new form JPanelListePays
@@ -107,11 +111,8 @@ public class JPanelListePays extends javax.swing.JPanel {
 
         Pays p = tModelListePays.getPays().get(i);
         Long paysId = p.getId();
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        em.getTransaction().begin();
-        p = em.find(Pays.class, paysId);
-        em.remove(p);
-        em.getTransaction().commit();
+        
+        pserv.supprimer(paysId);
 
         rafraichirJTable();
         // TODO add your handling code here:

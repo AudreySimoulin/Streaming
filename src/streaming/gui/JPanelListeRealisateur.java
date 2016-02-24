@@ -7,7 +7,9 @@ package streaming.gui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Realisateur;
+import streaming.service.RealisateurService;
 
 /**
  *
@@ -19,6 +21,8 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
      * Creates new form JPanelListeRealisateur
      */
     private TableModelListeRealisateur tbListeReal = null;
+    @Autowired
+    private RealisateurService rserv ;
 
     public void rafraichirJTable() {
         tbListeReal = new TableModelListeRealisateur();
@@ -105,11 +109,7 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
         Realisateur r = tbListeReal.getRealisateur().get(i);
         Long idReal = r.getId();
         
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        em.getTransaction().begin();
-        r = em.find(Realisateur.class, idReal);
-        em.remove(r);
-        em.getTransaction().commit();
+        rserv.supprimer(idReal);
         
         rafraichirJTable();
 

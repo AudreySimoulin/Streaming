@@ -49,5 +49,13 @@ public class SerieService {
         return seriedao.listerParTitre(titreSerie);
     }
     
+    public void supprimer(Long id) {
+        seriedao.supprimer(id);
+    }
+    
+     public void modifier(Serie serie) {
+         seriedao.modifier(serie);
+     }
+    
 
 }

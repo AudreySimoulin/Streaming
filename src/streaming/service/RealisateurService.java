@@ -32,5 +32,13 @@ public class RealisateurService {
     public List<Realisateur> listerTous() {
         return rdao.listerTous();
     }
+    
+    public void modifier(Realisateur r) {
+        rdao.modifier(r);
+    }
+    
+    public void supprimer(Long id) {
+        rdao.supprimer(id);
+    }
 
 }

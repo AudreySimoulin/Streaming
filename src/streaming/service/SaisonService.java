@@ -32,5 +32,13 @@ public class SaisonService {
     public List<Saison> listerTous() {
         return saisondao.listerTous();
     }
+    
+    public void modifier(Saison s) {
+        saisondao.modifier(s);
+    }
+    
+      public void supprimer(Long id) {
+          saisondao.supprimer(id);
+      }
 
 }

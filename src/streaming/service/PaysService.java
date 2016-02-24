@@ -32,5 +32,13 @@ public class PaysService {
     public List<Pays> listerTous() {
         return pdao.listerTous();
     }
+    
+     public void modifier(Pays p) {
+         pdao.modifier(p);
+     }
+     
+     public void supprimer(Long id) {
+         pdao.supprimer(id);
+     }
 
 }

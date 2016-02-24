@@ -7,7 +7,9 @@ package streaming.gui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Serie;
+import streaming.service.SerieService;
 
 /**
  *
@@ -16,6 +18,9 @@ import streaming.entity.Serie;
 public class JPanelListeSerie extends javax.swing.JPanel {
     
     private TableModelListeSerie tbListeSerie = null;
+    
+    @Autowired
+    private SerieService serieserv;
     
     public void rafraichirJTable(){
         tbListeSerie = new TableModelListeSerie();
@@ -104,11 +109,7 @@ public class JPanelListeSerie extends javax.swing.JPanel {
         Serie s = tbListeSerie.getSerie().get(i);
         Long serieId = s.getId();
         
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        em.getTransaction().begin();
-        s = em.find(Serie.class, serieId);
-        em.remove(s);
-        em.getTransaction().commit();
+        serieserv.supprimer(serieId);
         
         rafraichirJTable();
        
