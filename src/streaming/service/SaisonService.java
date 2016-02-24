@@ -6,6 +6,8 @@
 package streaming.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import streaming.dao.SaisonDAO;
 import streaming.entity.Saison;
 
@@ -13,9 +15,11 @@ import streaming.entity.Saison;
  *
  * @author admin
  */
+@Service
 public class SaisonService {
 
-    SaisonDAO saisondao = new SaisonDAO();
+    @Autowired
+    SaisonDAO saisondao ;
 
     public void ajouter(Saison s) {
         saisondao.ajouter(s);

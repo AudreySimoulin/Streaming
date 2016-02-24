@@ -8,12 +8,14 @@ package streaming.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.stereotype.Repository;
 import streaming.entity.Realisateur;
 
 /**
  *
  * @author admin
  */
+@Repository
 public class RealisateurDAO {
 
     public void ajouter(Realisateur r) {

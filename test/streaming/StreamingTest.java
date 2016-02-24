@@ -12,6 +12,10 @@ import javax.persistence.Persistence;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import streaming.entity.Episode;
 import streaming.entity.Film;
 import streaming.entity.Genre;
@@ -35,6 +39,8 @@ import streaming.service.SerieService;
  *
  * @author admin
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "file:/C:\\Users\\admin\\Documents\\NetBeansProjects\\Streaming\\application-context.xml")
 public class StreamingTest {
 
     private DBService dbs = new DBService();
@@ -42,12 +48,16 @@ public class StreamingTest {
     private FilmService fserv = new FilmService();
     private GenreService gserv = new GenreService();
     private LienService lserv = new LienService();
-    private PaysService pserv = new PaysService();
-    private RealisateurService rserv = new RealisateurService();
-    private SaisonService saisonserv = new SaisonService();
-    private SerieService serieserv = new SerieService();
+    @Autowired
+    private PaysService pserv ;
+    @Autowired
+    private RealisateurService rserv ;
+    @Autowired
+    private SaisonService saisonserv;
+    @Autowired
+    private SerieService serieserv;
 
-    @Before
+//    @Before
     public void initialisationBaseOK() throws SynopsisVideException {
         dbs.supprimerTous();
 
@@ -405,7 +415,14 @@ public class StreamingTest {
 
     }
 
-@Test
+    @Test
+    public void testSpringOK() {
+
+        System.out.println(saisonserv.rechercherParId(1L).getSerie().getTitre());
+
+    }
+
+//    @Test
     public void craetionSerieOK() {
         Persistence.createEntityManagerFactory("StreamingPU");
     }

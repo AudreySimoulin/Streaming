@@ -230,6 +230,7 @@ public class JDialogEditFilm extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListReal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jListReal);
 
         getContentPane().add(jScrollPane1);

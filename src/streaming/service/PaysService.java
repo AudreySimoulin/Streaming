@@ -6,6 +6,8 @@
 package streaming.service;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import streaming.dao.PaysDAO;
 import streaming.entity.Pays;
 
@@ -13,9 +15,11 @@ import streaming.entity.Pays;
  *
  * @author admin
  */
+@Service
 public class PaysService {
 
-    PaysDAO pdao = new PaysDAO();
+    @Autowired
+    PaysDAO pdao ;
 
     public void ajouter(Pays p) {
         pdao.ajouter(p);
