@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Film;
 import streaming.entity.Realisateur;
 import streaming.service.FilmService;
@@ -21,7 +22,9 @@ public class TableModelListeFilm extends DefaultTableModel {
 
     private List<Film> film = null;
     private int nbFilm = 0;
-    private FilmService fserv = new FilmService();
+    
+    @Autowired
+    private FilmService fserv;
 
     public List<Film> getFilm() {
         return film;

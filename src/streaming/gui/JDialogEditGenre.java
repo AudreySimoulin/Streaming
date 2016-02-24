@@ -5,6 +5,7 @@
  */
 package streaming.gui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Genre;
 import streaming.service.GenreService;
 
@@ -18,7 +19,9 @@ public class JDialogEditGenre extends javax.swing.JDialog {
      * Creates new form JDialogGenre
      */
     private JPanelListeGenre jpListeGenre = null;
-    private GenreService gserv = new GenreService();
+    
+    @Autowired
+    private GenreService gserv;
 
     public JDialogEditGenre(java.awt.Frame parent, boolean modal, JPanelListeGenre jp) {
         super(parent, modal);

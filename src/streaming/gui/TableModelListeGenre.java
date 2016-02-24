@@ -7,6 +7,7 @@ package streaming.gui;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Genre;
 import streaming.service.GenreService;
 
@@ -15,9 +16,12 @@ import streaming.service.GenreService;
  * @author admin
  */
 public class TableModelListeGenre extends DefaultTableModel{
+    
     private List<Genre> genre = null;
     private int nbGenre = 0;
-    private GenreService gserv = new GenreService();
+    
+    @Autowired
+    private GenreService gserv;
 
     public List<Genre> getGenre() {
         return genre;

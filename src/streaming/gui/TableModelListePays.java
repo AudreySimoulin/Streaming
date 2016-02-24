@@ -7,6 +7,7 @@ package streaming.gui;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
 import streaming.service.PaysService;
 
@@ -18,7 +19,9 @@ public class TableModelListePays extends DefaultTableModel {
 
     private List<Pays> pays = null;
     private int nbPays = 0;
-    private PaysService pserv = new PaysService();
+    
+    @Autowired
+    private PaysService pserv;
 
     public List<Pays> getPays() {
         return pays;
