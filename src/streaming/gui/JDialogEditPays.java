@@ -51,6 +51,7 @@ public class JDialogEditPays extends javax.swing.JDialog {
         jbAjouter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ajout d'un Pays");
         getContentPane().setLayout(new java.awt.GridLayout(3, 3));
 
         jLabel1.setText("ID");

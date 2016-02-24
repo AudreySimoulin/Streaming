@@ -45,6 +45,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         jToolBar1 = new javax.swing.JToolBar();
         jbNouveauFilm = new javax.swing.JButton();
         jbSupprimerFilm = new javax.swing.JButton();
+        jbLiens = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFilm = new javax.swing.JTable();
 
@@ -73,6 +74,17 @@ public class JPanelListeFilm extends javax.swing.JPanel {
             }
         });
         jToolBar1.add(jbSupprimerFilm);
+
+        jbLiens.setText("Afficher Liens");
+        jbLiens.setFocusable(false);
+        jbLiens.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbLiens.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbLiens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLiensActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jbLiens);
 
         add(jToolBar1, java.awt.BorderLayout.NORTH);
 
@@ -110,17 +122,26 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerFilmActionPerformed
 
+    
     private void jbNouveauFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauFilmActionPerformed
         new JDialogEditFilm(null, true, this).setVisible(true);//Affiche boite de dialogue
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbNouveauFilmActionPerformed
 
+    private void jbLiensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLiensActionPerformed
+
+     
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbLiensActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFilm;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jbLiens;
     private javax.swing.JButton jbNouveauFilm;
     private javax.swing.JButton jbSupprimerFilm;
     // End of variables declaration//GEN-END:variables

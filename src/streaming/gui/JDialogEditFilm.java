@@ -16,10 +16,12 @@ import javax.swing.JFrame;
 import streaming.entity.Film;
 import streaming.entity.Genre;
 import streaming.entity.Pays;
+import streaming.entity.Realisateur;
 import streaming.exception.SynopsisVideException;
 import streaming.service.FilmService;
 import streaming.service.GenreService;
 import streaming.service.PaysService;
+import streaming.service.RealisateurService;
 
 /**
  *
@@ -30,9 +32,11 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private FilmService fserv = new FilmService();
     private GenreService gserv = new GenreService();
     private PaysService pserv = new PaysService();
+    private RealisateurService rserv = new RealisateurService();
 
     private List<Pays> listePays = new ArrayList<>();
     private List<Genre> listeGenre = new ArrayList<Genre>();
+    private List<Realisateur> listeReal = new ArrayList<>();
 
     private JPanelListeFilm jpFilm = null;
 
@@ -44,6 +48,7 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         initComponents();
         listePays = pserv.listerTous();
         listeGenre = gserv.listerTous();
+        
         initialiseComboBoxGenre();
         initialiseComboBoxPays();
 
@@ -71,6 +76,12 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         }
 
     }
+    
+    public void initialiseJListReal(){
+        jListReal.removeAll();
+       
+           
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +106,8 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         jComboBoxPays = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jComboBoxReal = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListReal = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextSynopsis = new javax.swing.JTextField();
@@ -107,6 +119,7 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         jBAjouter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ajout d'un Film");
         getContentPane().setLayout(new java.awt.GridLayout(8, 3));
 
         jLabel1.setText("ID");
@@ -202,8 +215,14 @@ public class JDialogEditFilm extends javax.swing.JDialog {
 
         getContentPane().add(jPanel5);
 
-        jComboBoxReal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxReal);
+        jListReal.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jListReal);
+
+        getContentPane().add(jScrollPane1);
 
         jLabel6.setText("Synopsis");
         getContentPane().add(jLabel6);
@@ -379,7 +398,6 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private javax.swing.JButton jBAjouter;
     private javax.swing.JComboBox<String> jComboBoxGenre;
     private javax.swing.JComboBox<String> jComboBoxPays;
-    private javax.swing.JComboBox<String> jComboBoxReal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -387,6 +405,7 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JList<String> jListReal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -396,6 +415,7 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextAnnee;
     private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextSynopsis;
