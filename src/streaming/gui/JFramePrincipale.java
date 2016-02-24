@@ -7,13 +7,14 @@ package streaming.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author admin
  */
-
 @Component
 public class JFramePrincipale extends javax.swing.JFrame {
 
@@ -156,7 +157,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
     private void jbRealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRealActionPerformed
         // Accés à la catégorie réalisateur
         supprimerPanneaux();
-        
+
         jpCentral = new JPanelListeRealisateur();
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
@@ -192,7 +193,12 @@ public class JFramePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFramePrincipale().setVisible(true);
+
+                ApplicationContext context = new FileSystemXmlApplicationContext("file:/C:\\Users\\admin\\Documents\\NetBeansProjects\\Streaming\\application-context.xml");
+                JFramePrincipale jfp = context.getBean(JFramePrincipale.class);
+                jfp.setSize(800,600);
+                jfp.setVisible(true);
+
             }
         });
     }
