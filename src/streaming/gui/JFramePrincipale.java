@@ -78,6 +78,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbPays.setFocusable(false);
         jbPays.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbPays.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbPays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPaysActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbPays);
 
         jbReal.setText("Réalisateur");
@@ -116,6 +121,17 @@ public class JFramePrincipale extends javax.swing.JFrame {
         this.pack();
         
     }//GEN-LAST:event_jbSerieActionPerformed
+
+    private void jbPaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaysActionPerformed
+
+        supprimerPanneaux();
+        
+        jpCentral = new JPanelListePays();
+        add(jpCentral, BorderLayout.CENTER);
+        this.pack();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbPaysActionPerformed
 
     /**
      * @param args the command line arguments
