@@ -11,13 +11,10 @@ import javax.persistence.Persistence;
 import org.springframework.stereotype.Repository;
 import streaming.entity.Lien;
 
-
-
 /**
  *
  * @author admin
  */
-
 @Repository
 public class LienDAO {
 
@@ -38,6 +35,20 @@ public class LienDAO {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT l FROM Lien l").getResultList();
 
+    }
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Lien l WHERE l.id = " + id).executeUpdate();
+        em.getTransaction().commit();
+    }
+
+    public void modifier(Lien l) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(l);
+        em.getTransaction().commit();
     }
 
 }

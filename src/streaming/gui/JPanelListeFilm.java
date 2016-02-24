@@ -7,7 +7,9 @@ package streaming.gui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Film;
+import streaming.service.FilmService;
 
 /**
  *
@@ -16,6 +18,10 @@ import streaming.entity.Film;
 public class JPanelListeFilm extends javax.swing.JPanel {
 
     private TableModelListeFilm tModelListeFilm = null;
+    
+    @Autowired
+    private FilmService fserv;
+          
 
     /**
      * Creates new form JPanelListeFilm
@@ -112,11 +118,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         Film f = tModelListeFilm.getFilm().get(i);
         Long filmId = f.getId();
 
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        em.getTransaction().begin();
-        f = em.find(Film.class, filmId);
-        em.remove(f);
-        em.getTransaction().commit();
+        
         rafraichirJTable();
 
         // TODO add your handling code here:

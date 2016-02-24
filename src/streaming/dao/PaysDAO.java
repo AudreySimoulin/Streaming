@@ -37,4 +37,18 @@ public class PaysDAO {
 
     }
 
+    public void modifier(Pays p) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(p);
+        em.getTransaction().commit();
+    }
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Pays p WHERE p.id = " + id).executeUpdate();
+        em.getTransaction().commit();
+    }
+
 }

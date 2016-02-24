@@ -15,7 +15,6 @@ import streaming.entity.Film;
  *
  * @author admin
  */
-
 @Repository
 public class FilmDAO {
 
@@ -38,17 +37,32 @@ public class FilmDAO {
 
     }
     
-    public List<Film> listerParGenre(Long idGenre){
+        public void modifier(Film f){
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(f);
+        em.getTransaction().commit();
+    }
+    
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Film f WHERE f.id = " + id).executeUpdate();
+        em.getTransaction().commit();
+    }
+
+    public List<Film> listerParGenre(Long idGenre) {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return (List<Film>) em.createQuery("SELECT f FROM Film f JOIN f.genre g WHERE g.id = " + idGenre).getResultList();
     }
-    
-    public List<Film> listerParPays(Long idPays){
+
+    public List<Film> listerParPays(Long idPays) {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT f FROM Film f JOIN f.pays p WHERE p.id = " + idPays).getResultList();
     }
-    
-    public List<Film> listerParTitreOuRealisateur(String string){
+
+    public List<Film> listerParTitreOuRealisateur(String string) {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT DISTINCT f FROM Film f JOIN f.listeRealisateurs r WHERE UPPER(f.titre) LIKE UPPER ('%" + string + "%') OR UPPER(r.prenom) LIKE UPPER ('%" + string + "%') OR UPPER(r.nom) LIKE UPPER ('%" + string + "%')").getResultList();
     }

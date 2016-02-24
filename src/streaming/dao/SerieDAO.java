@@ -35,12 +35,25 @@ public class SerieDAO {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT s FROM Serie s").getResultList();
 
-    } 
-    
-    public List<Serie> listerParTitre(String titreSerie){
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        return em.createQuery("SELECT s FROM Serie s WHERE UPPER (s.titre) LIKE UPPER('%"+titreSerie+"%')").getResultList();
     }
 
+    public void modifier(Serie serie) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(serie);
+        em.getTransaction().commit();
+    }
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Serie serie WHERE serie.id = " + id).executeUpdate();
+        em.getTransaction().commit();
+    }
+
+    public List<Serie> listerParTitre(String titreSerie) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        return em.createQuery("SELECT s FROM Serie s WHERE UPPER (s.titre) LIKE UPPER('%" + titreSerie + "%')").getResultList();
+    }
 
 }

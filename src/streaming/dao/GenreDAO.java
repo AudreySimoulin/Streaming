@@ -15,7 +15,6 @@ import streaming.entity.Genre;
  *
  * @author admin
  */
-
 @Repository
 public class GenreDAO {
 
@@ -36,6 +35,20 @@ public class GenreDAO {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         return em.createQuery("SELECT g FROM Genre g").getResultList();
 
+    }
+
+    public void modifier(Genre g) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(g);
+        em.getTransaction().commit();
+    }
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Genre g WHERE g.id = " + id).executeUpdate();
+        em.getTransaction().commit();
     }
 
 }

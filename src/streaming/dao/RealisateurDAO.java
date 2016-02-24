@@ -37,4 +37,18 @@ public class RealisateurDAO {
 
     }
 
+    public void modifier(Realisateur r) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.merge(r);
+        em.getTransaction().commit();
+    }
+
+    public void supprimer(Long id) {
+        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
+        em.getTransaction().begin();
+        em.createQuery("DELETE FROM Realisateur r WHERE r.id = " + id).executeUpdate();
+        em.getTransaction().commit();
+    }
+
 }
