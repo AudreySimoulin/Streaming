@@ -32,5 +32,13 @@ public class LienService {
     public List<Lien> listerTous() {
         return ldao.listerTous();
     }
+    
+    public void supprimer(Long id) {
+        ldao.supprimer(id);
+    }
+    
+    public void modifier(Lien l) {
+        ldao.modifier(l);
+    }
 
 }

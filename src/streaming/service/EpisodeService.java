@@ -34,4 +34,11 @@ public class EpisodeService {
         return edao.listerTous();
     }
     
+    public void modifier(Episode e){
+        edao.modifier(e);
+    }
+    
+    public void supprimer(Long id){
+        edao.supprimer(id);
+    }
 }

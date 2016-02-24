@@ -118,7 +118,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         Film f = tModelListeFilm.getFilm().get(i);
         Long filmId = f.getId();
 
-        
+        fserv.supprimer(filmId);
         rafraichirJTable();
 
         // TODO add your handling code here:

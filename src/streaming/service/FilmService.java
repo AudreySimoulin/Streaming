@@ -44,6 +44,14 @@ public class FilmService {
         return fdao.listerTous();
     }
     
+    public void modifier(Film f) {
+        fdao.modifier(f);
+    }
+    
+    public void supprimer(Long id) {
+        fdao.supprimer(id);
+    }
+    
     public List<Film> listerParGenre(Long idGenre){
         return fdao.listerParGenre(idGenre);
     }
