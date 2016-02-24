@@ -7,11 +7,14 @@ package streaming.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author admin
  */
+
+@Service
 public class DBService {
     
     public void supprimerTous(){

@@ -39,15 +39,13 @@ import streaming.service.SerieService;
  *
  * @author admin
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:/C:\\Users\\admin\\Documents\\NetBeansProjects\\Streaming\\application-context.xml")
+
+    @RunWith(SpringJUnit4ClassRunner.class)
+    @ContextConfiguration(locations = "file:/C:\\Users\\admin\\Documents\\NetBeansProjects\\Streaming\\application-context.xml")
+    
 public class StreamingTest {
 
-    private DBService dbs = new DBService();
-    private EpisodeService eserv = new EpisodeService();
-    private FilmService fserv = new FilmService();
-    private GenreService gserv = new GenreService();
-    private LienService lserv = new LienService();
+   
     @Autowired
     private PaysService pserv ;
     @Autowired
@@ -56,7 +54,22 @@ public class StreamingTest {
     private SaisonService saisonserv;
     @Autowired
     private SerieService serieserv;
-
+    @Autowired
+    private DBService dbs;
+    
+    @Autowired
+    private EpisodeService eserv;
+    
+    @Autowired
+    private FilmService fserv;
+    
+    @Autowired
+    private GenreService gserv;
+    
+    @Autowired
+    private LienService lserv;
+    
+  
 //    @Before
     public void initialisationBaseOK() throws SynopsisVideException {
         dbs.supprimerTous();
@@ -423,6 +436,8 @@ public class StreamingTest {
     }
 
 //    @Test
+    
+//@Test
     public void craetionSerieOK() {
         Persistence.createEntityManagerFactory("StreamingPU");
     }
@@ -616,5 +631,10 @@ public class StreamingTest {
         for (Film f : filmsParTitreOuReal) {
             System.out.println(f.getTitre());
         }
+    }
+    
+    @Test
+    public void testSpringGenre(){
+        System.out.println(gserv.rechercherParId(1L).getNom());
     }
 }

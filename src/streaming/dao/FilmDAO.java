@@ -8,12 +8,15 @@ package streaming.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.stereotype.Repository;
 import streaming.entity.Film;
 
 /**
  *
  * @author admin
  */
+
+@Repository
 public class FilmDAO {
 
     public void ajouter(Film f) {
