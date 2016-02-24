@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
 import streaming.entity.Serie;
 import streaming.exception.SynopsisVideException;
@@ -23,8 +24,11 @@ import streaming.service.SerieService;
  */
 public class JDialogEditSerie extends javax.swing.JDialog {
 
-    private SerieService serieserv = new SerieService();
-    private PaysService pserv = new PaysService();
+    @Autowired
+    private SerieService serieserv ;
+    
+    @Autowired
+    private PaysService pserv ;
 
     private List<Pays> listePays = new ArrayList<Pays>();
 

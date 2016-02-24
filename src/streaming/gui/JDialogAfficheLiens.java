@@ -5,11 +5,20 @@
  */
 package streaming.gui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import streaming.service.LienService;
+
 /**
  *
  * @author admin
  */
+
+
+        
 public class JDialogAfficheLiens extends javax.swing.JDialog {
+    
+    @Autowired
+    private LienService lserv;
 
     /**
      * Creates new form JDialogAfficheLiens

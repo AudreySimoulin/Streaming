@@ -5,6 +5,7 @@
  */
 package streaming.gui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Realisateur;
 import streaming.service.RealisateurService;
 
@@ -19,7 +20,9 @@ public class JDialogEditRealisateur extends javax.swing.JDialog {
      */
     
     private JPanelListeRealisateur jpListeReal = null;
-    private RealisateurService rserv = new RealisateurService();
+    
+    @Autowired
+    private RealisateurService rserv ;
     
     public JDialogEditRealisateur(java.awt.Frame parent, boolean modal, JPanelListeRealisateur jp) {
         super(parent, modal);
