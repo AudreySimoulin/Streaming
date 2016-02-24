@@ -5,12 +5,14 @@
  */
 package streaming.gui;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 import streaming.entity.Film;
@@ -39,6 +41,8 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private List<Realisateur> listeReal = new ArrayList<>();
 
     private JPanelListeFilm jpFilm = null;
+    
+    private DefaultListModel modelList = new DefaultListModel();
 
     /**
      * Creates new form JDialogEditFilm
@@ -48,9 +52,11 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         initComponents();
         listePays = pserv.listerTous();
         listeGenre = gserv.listerTous();
+        listeReal = rserv.listerTous();
         
         initialiseComboBoxGenre();
         initialiseComboBoxPays();
+        initialiseJListReal();
 
         this.jpFilm = jp;
 
@@ -79,7 +85,11 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     
     public void initialiseJListReal(){
         jListReal.removeAll();
+       for (Realisateur r : listeReal){
+           modelList.addElement(r.getPrenom()+" "+r.getNom());
+       }          
        
+       jListReal.setModel(modelList);
            
     }
 
@@ -308,7 +318,14 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         Film f = new Film();
         f.setAnnee(Long.parseLong(jTextAnnee.getText()));
         f.setTitre(jTextTitre.getText());
-        f.setSynopsis(jTextSynopsis.getText());
+        f.setSynopsis(jTextSynopsis.getText());       
+        
+       
+        for (int i : jListReal.getSelectedIndices()){
+            f.getListeRealisateurs().add(listeReal.get(i));
+        }
+        
+                
 
         for (Pays p : listePays) {
             if (p.getNom() == jComboBoxPays.getSelectedItem()) {

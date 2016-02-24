@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
 import streaming.entity.Film;
+import streaming.entity.Realisateur;
 import streaming.service.FilmService;
 
 /**
@@ -58,7 +59,8 @@ public class TableModelListeFilm extends DefaultTableModel {
         }
 
         if (column == 4) {
-            return f.getListeRealisateurs();
+            for (Realisateur r : f.getListeRealisateurs())
+            return r.getPrenom()+" "+r.getNom();
         }
 
         if (column == 5) {
