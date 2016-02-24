@@ -7,7 +7,9 @@ package streaming.gui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Genre;
+import streaming.service.GenreService;
 
 /**
  *
@@ -16,6 +18,9 @@ import streaming.entity.Genre;
 public class JPanelListeGenre extends javax.swing.JPanel {
 
     private TableModelListeGenre tbListeGenre = null;
+    
+    @Autowired
+    private GenreService gserv;
 
     public void rafraichirJTable() {
         tbListeGenre = new TableModelListeGenre();
@@ -103,11 +108,7 @@ public class JPanelListeGenre extends javax.swing.JPanel {
         Genre g = tbListeGenre.getGenre().get(i);
         Long idGenre = g.getId();
         
-        EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
-        em.getTransaction().begin();
-        g = em.find(Genre.class, idGenre);
-        em.remove(g);
-        em.getTransaction().commit();
+        gserv.supprimer(idGenre);
         
         rafraichirJTable();
         

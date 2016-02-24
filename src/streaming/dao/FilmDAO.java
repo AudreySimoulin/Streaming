@@ -36,14 +36,13 @@ public class FilmDAO {
         return em.createQuery("SELECT f FROM Film f").getResultList();
 
     }
-    
-        public void modifier(Film f){
+
+    public void modifier(Film f) {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();
         em.getTransaction().begin();
         em.merge(f);
         em.getTransaction().commit();
     }
-    
 
     public void supprimer(Long id) {
         EntityManager em = Persistence.createEntityManagerFactory("StreamingPU").createEntityManager();

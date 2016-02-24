@@ -33,5 +33,13 @@ public class GenreService {
     public List<Genre> listerTous() {
         return gdao.listerTous();
     }
+    
+    public void modifier(Genre g) {
+        gdao.modifier(g);
+    }
+    
+    public void supprimer(Long id) {
+        gdao.supprimer(id);
+    }
 
 }
