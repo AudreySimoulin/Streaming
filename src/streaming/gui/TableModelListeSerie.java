@@ -53,7 +53,7 @@ public class TableModelListeSerie extends DefaultTableModel {
             return s.getAnnee();
         }
         if(column == 3){
-            return s.getPays();
+            return s.getPays().getNom();
         }
         if(column == 4){
             return s.getSynopsis();

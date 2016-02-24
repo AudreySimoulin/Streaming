@@ -27,7 +27,7 @@ public class TableModelListeFilm extends DefaultTableModel {
     }
 
     public TableModelListeFilm() {
-        setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Réalisateur", "Synopsis"});
+        setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Réalisateur", "Synopsis", "Genre"});
         film = fserv.listerTous();
         nbFilm = film.size();
     }
@@ -54,7 +54,7 @@ public class TableModelListeFilm extends DefaultTableModel {
         }
 
         if (column == 3) {
-            return f.getPays();
+            return f.getPays().getNom();
         }
 
         if (column == 4) {
@@ -66,7 +66,7 @@ public class TableModelListeFilm extends DefaultTableModel {
         }
 
         if (column == 6) {
-            return f.getGenre();
+            return f.getGenre().getNom();
         }
 
         return "***ERROR***";

@@ -90,6 +90,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jbGenre.setFocusable(false);
         jbGenre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbGenre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbGenre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGenreActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbGenre);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.NORTH);
@@ -116,6 +121,15 @@ public class JFramePrincipale extends javax.swing.JFrame {
         this.pack();
         
     }//GEN-LAST:event_jbSerieActionPerformed
+
+    private void jbGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGenreActionPerformed
+        // Accés à la catégorie genre
+        supprimerPanneaux();
+        
+        jpCentral = new JPanelListeGenre();
+        add(jpCentral, BorderLayout.CENTER);
+        this.pack();
+    }//GEN-LAST:event_jbGenreActionPerformed
 
     /**
      * @param args the command line arguments
