@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import streaming.entity.Film;
 import streaming.entity.Genre;
@@ -31,10 +32,17 @@ import streaming.service.RealisateurService;
  */
 public class JDialogEditFilm extends javax.swing.JDialog {
 
-    private FilmService fserv = new FilmService();
-    private GenreService gserv = new GenreService();
-    private PaysService pserv = new PaysService();
-    private RealisateurService rserv = new RealisateurService();
+    @Autowired
+    private FilmService fserv;
+    
+    @Autowired
+    private GenreService gserv;
+    
+    @Autowired
+    private PaysService pserv;
+    
+    @Autowired
+    private RealisateurService rserv;
 
     private List<Pays> listePays = new ArrayList<>();
     private List<Genre> listeGenre = new ArrayList<Genre>();

@@ -5,6 +5,7 @@
  */
 package streaming.gui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
 import streaming.service.PaysService;
 
@@ -14,7 +15,8 @@ import streaming.service.PaysService;
  */
 public class JDialogEditPays extends javax.swing.JDialog {
     
-    private PaysService pserv = new PaysService();
+    @Autowired
+    private PaysService pserv;
     private JPanelListePays jpPays = null;
 
     /**
