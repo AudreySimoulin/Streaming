@@ -9,7 +9,9 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import streaming.entity.Film;
 import streaming.entity.Lien;
+import streaming.service.FilmService;
 import streaming.service.LienService;
 
 /**
@@ -17,10 +19,13 @@ import streaming.service.LienService;
  * @author admin
  */
 
+@Component
 public class TableModeListelLiens extends DefaultTableModel{
     
-     @Autowired
-    private LienService lserv;
+   
+
+private Film f =new Film();
+    
      
     private List<Lien> liens = null;   
    
@@ -30,8 +35,8 @@ public class TableModeListelLiens extends DefaultTableModel{
     private int nbLiens = 0;
     
     public TableModeListelLiens(){
-        setColumnIdentifiers(new String[]{"ID","URL"});
-        liens=lserv.listerTous();
+        setColumnIdentifiers(new String[]{"ID","URL"});        
+        liens=f.getListeLiens();
         nbLiens = liens.size();
     }
     

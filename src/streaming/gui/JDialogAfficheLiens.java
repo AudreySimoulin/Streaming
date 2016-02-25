@@ -8,6 +8,7 @@ package streaming.gui;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import streaming.entity.Film;
 import streaming.entity.Lien;
 import streaming.service.LienService;
 
@@ -21,9 +22,22 @@ import streaming.service.LienService;
 public class JDialogAfficheLiens extends javax.swing.JDialog {
     
     @Autowired
+    private TableModeListelLiens tbModelListeLiens;
+    
+    @Autowired
     private LienService lserv;
     
     private List<Lien> listeLiens = new ArrayList<>();
+    
+    private Film filmSelect = new Film();
+
+    public Film getFilmSelect() {
+        return filmSelect;
+    }
+
+    public void setFilmSelect(Film filmSelect) {
+        this.filmSelect = filmSelect;
+    }
 
     /**
      * Creates new form JDialogAfficheLiens
@@ -36,7 +50,6 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     }
     
     public void rafraichirJTable(){        
-       TableModeListelLiens tbModelListeLiens = new TableModeListelLiens();
        jTableLiens.setModel(tbModelListeLiens);
        jTableLiens.repaint();
     }

@@ -8,6 +8,7 @@ package streaming.gui;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Realisateur;
 import streaming.service.RealisateurService;
 
@@ -15,17 +16,22 @@ import streaming.service.RealisateurService;
  *
  * @author admin
  */
+@Component
 public class JPanelListeRealisateur extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanelListeRealisateur
      */
-    private TableModelListeRealisateur tbListeReal = null;
     @Autowired
-    private RealisateurService rserv ;
+    private JDialogEditRealisateur jDialogEditRealisateur;
+
+    @Autowired
+    private TableModelListeRealisateur tbListeReal;
+
+    @Autowired
+    private RealisateurService rserv;
 
     public void rafraichirJTable() {
-        tbListeReal = new TableModelListeRealisateur();
         jTableReal.setModel(tbListeReal);
         jTableReal.repaint();
     }
@@ -96,21 +102,24 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
 
     private void jbNewRealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewRealActionPerformed
         // Ajout d'un nouveau réalisateur
-        new JDialogEditRealisateur(null, true, this).setVisible(true);
+             
+        jDialogEditRealisateur.setJpListeReal(this);        
+        jDialogEditRealisateur.setVisible(true);
+        
     }//GEN-LAST:event_jbNewRealActionPerformed
 
     private void jbSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerActionPerformed
         // Suppression d'un réalisateur
         int i = jTableReal.getSelectedRow();
-        if(i==-1){
+        if (i == -1) {
             return;
         }
-        
+
         Realisateur r = tbListeReal.getRealisateur().get(i);
         Long idReal = r.getId();
-        
+
         rserv.supprimer(idReal);
-        
+
         rafraichirJTable();
 
     }//GEN-LAST:event_jbSupprimerActionPerformed

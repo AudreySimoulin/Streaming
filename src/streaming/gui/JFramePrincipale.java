@@ -7,6 +7,7 @@ package streaming.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class JFramePrincipale extends javax.swing.JFrame {
+    
+    @Autowired
+    private JPanelListeRealisateur jPanelListeRealisateur;
 
     /**
      * Creates new form JFramePrincipale
@@ -158,7 +162,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
         // Accés à la catégorie réalisateur
         supprimerPanneaux();
 
-        jpCentral = new JPanelListeRealisateur();
+        jpCentral = jPanelListeRealisateur;
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
     }//GEN-LAST:event_jbRealActionPerformed

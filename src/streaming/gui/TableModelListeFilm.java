@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Film;
 import streaming.entity.Realisateur;
 import streaming.service.FilmService;
@@ -18,6 +19,7 @@ import streaming.service.FilmService;
  *
  * @author admin
  */
+@Component
 public class TableModelListeFilm extends DefaultTableModel {
 
     private List<Film> film = null;

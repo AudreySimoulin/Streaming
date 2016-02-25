@@ -18,10 +18,12 @@ import streaming.service.FilmService;
 public class JPanelListeFilm extends javax.swing.JPanel {
 
     private TableModelListeFilm tModelListeFilm = null;
-    
+
+    @Autowired
+    private JDialogAfficheLiens jdLiens;
+
     @Autowired
     private FilmService fserv;
-          
 
     /**
      * Creates new form JPanelListeFilm
@@ -30,7 +32,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         tModelListeFilm = new TableModelListeFilm();
         jTableFilm.setModel(tModelListeFilm);
         jTableFilm.repaint();
-      
+
     }
 
     public JPanelListeFilm() {
@@ -124,7 +126,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerFilmActionPerformed
 
-    
+
     private void jbNouveauFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauFilmActionPerformed
         new JDialogEditFilm(null, true, this).setVisible(true);//Affiche boite de dialogue
 
@@ -133,7 +135,14 @@ public class JPanelListeFilm extends javax.swing.JPanel {
 
     private void jbLiensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLiensActionPerformed
 
-     
+        int i = jTableFilm.getSelectedRow();
+        if (i == -1) {
+            return;
+        }
+        Film f = tModelListeFilm.getFilm().get(i);
+
+        jdLiens.setVisible(true);
+        jdLiens.setFilmSelect(f);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbLiensActionPerformed

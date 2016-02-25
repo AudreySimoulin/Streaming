@@ -37,13 +37,22 @@ public class JDialogEditSerie extends javax.swing.JDialog {
     /**
      * Creates new form JDialogEditSerie
      */
-    public JDialogEditSerie(java.awt.Frame parent, boolean modal, JPanelListeSerie jp) {
-        super(parent, modal);
+    public JDialogEditSerie() {        
         initComponents();
         listePays = pserv.listerTous();
         initialiseComboBox();
+        setModal(true);
+        
 
-        this.jpSerie = jp;
+        
+    }
+
+    public JPanelListeSerie getJpSerie() {
+        return jpSerie;
+    }
+
+    public void setJpSerie(JPanelListeSerie jpSerie) {
+        this.jpSerie = jpSerie;
     }
 
     public JDialogEditSerie(java.awt.Frame parent, boolean modal) {

@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Serie;
 import streaming.service.SerieService;
 
@@ -17,6 +18,7 @@ import streaming.service.SerieService;
  *
  * @author admin
  */
+@Component
 public class TableModelListeSerie extends DefaultTableModel {
 
     private List<Serie> serie = null;
