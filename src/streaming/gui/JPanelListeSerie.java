@@ -31,6 +31,7 @@ public class JPanelListeSerie extends javax.swing.JPanel {
   
     
     public void rafraichirJTable(){
+        tbListeSerie.rafraichir();
         jTableSerie.setModel(tbListeSerie);
         jTableSerie.repaint();
     }
