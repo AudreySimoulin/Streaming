@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import streaming.entity.Film;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-02-24T13:55:00")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-02-25T10:51:00")
 @StaticMetamodel(Genre.class)
 public class Genre_ { 
 

@@ -8,6 +8,7 @@ package streaming.gui;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Film;
 import streaming.entity.Lien;
 import streaming.service.LienService;
@@ -16,19 +17,16 @@ import streaming.service.LienService;
  *
  * @author admin
  */
-
-
-        
+@Component
 public class JDialogAfficheLiens extends javax.swing.JDialog {
-    
+
     @Autowired
     private TableModeListelLiens tbModelListeLiens;
-    
+
     @Autowired
     private LienService lserv;
-    
+
 //    private List<Lien> listeLiens = new ArrayList<>();
-    
     private Film filmSelect = new Film();
 
     public Film getFilmSelect() {
@@ -42,20 +40,17 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     /**
      * Creates new form JDialogAfficheLiens
      */
-    public JDialogAfficheLiens(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public JDialogAfficheLiens() {
+        this.setModal(true);
         initComponents();
-        
-        
     }
-    
-    public void rafraichirJTable(){
+
+    public void rafraichirJTable() {
 //       listeLiens = lserv.listerTous();
-       tbModelListeLiens.setFilmSelect(filmSelect);
-       jTableLiens.setModel(tbModelListeLiens);
-       jTableLiens.repaint();
-       
-       
+        tbModelListeLiens.setFilmSelect(filmSelect);
+        jTableLiens.setModel(tbModelListeLiens);
+        jTableLiens.repaint();
+
     }
 
     /**
@@ -109,47 +104,6 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogAfficheLiens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogAfficheLiens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogAfficheLiens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogAfficheLiens.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogAfficheLiens dialog = new JDialogAfficheLiens(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
