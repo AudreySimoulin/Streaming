@@ -39,6 +39,7 @@ public class JPanelListePays extends javax.swing.JPanel {
     public void rafraichir() {
         tModelPays.rafraichir();
         jTablePays.setModel(tModelPays);
+        jTablePays.revalidate();
         jTablePays.repaint();
     }
 

@@ -33,6 +33,7 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
 
     public void rafraichirJTable() {
         jTableReal.setModel(tbListeReal);
+        jTableReal.validate();
         jTableReal.repaint();
     }
 

@@ -47,6 +47,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         tModelListeFilm.rafraichir();
         
         jTableFilm.setModel(tModelListeFilm);
+        jTableFilm.revalidate();
         jTableFilm.repaint();
         
         jFrameP.repaint();

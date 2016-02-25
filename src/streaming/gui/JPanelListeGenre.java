@@ -31,6 +31,7 @@ public class JPanelListeGenre extends javax.swing.JPanel {
     public void rafraichir() {
         tbListeGenre.rafraichir();
         jTableGenre.setModel(tbListeGenre);
+        jTableGenre.revalidate();
         jTableGenre.repaint();
     }
 
