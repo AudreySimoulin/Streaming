@@ -6,6 +6,7 @@
 package streaming.gui;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Pays;
 import streaming.service.PaysService;
 
@@ -13,6 +14,7 @@ import streaming.service.PaysService;
  *
  * @author admin
  */
+@Component
 public class JDialogEditPays extends javax.swing.JDialog {
     
     @Autowired

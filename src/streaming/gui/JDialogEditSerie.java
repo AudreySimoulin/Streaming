@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Pays;
 import streaming.entity.Serie;
 import streaming.exception.SynopsisVideException;
@@ -22,6 +23,7 @@ import streaming.service.SerieService;
  *
  * @author admin
  */
+@Component
 public class JDialogEditSerie extends javax.swing.JDialog {
 
     @Autowired

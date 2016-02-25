@@ -8,6 +8,7 @@ package streaming.gui;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Film;
 import streaming.entity.Lien;
 import streaming.service.LienService;
@@ -18,7 +19,7 @@ import streaming.service.LienService;
  */
 
 
-        
+@Component        
 public class JDialogAfficheLiens extends javax.swing.JDialog {
     
     @Autowired
