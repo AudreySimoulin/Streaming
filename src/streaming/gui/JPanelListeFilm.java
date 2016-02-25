@@ -150,6 +150,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         }
         Film f = tModelListeFilm.getFilm().get(i);
 
+        jdLiens.rafraichirJTable();
         jdLiens.setVisible(true);
         jdLiens.setFilmSelect(f);
 

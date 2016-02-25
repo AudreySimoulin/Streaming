@@ -30,12 +30,16 @@ public class TableModelListeSerie extends DefaultTableModel {
     public List<Serie> getSerie() {
         return serie;
     }
+    
+    public void rafraichir(){
+        serie = serieserv.listerTous();
+        nbSerie = serie.size();
+    }
 
     public TableModelListeSerie() {
 
         setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Synopsis"});
-        serie = serieserv.listerTous();
-        nbSerie = serie.size();
+        
 
     }
 

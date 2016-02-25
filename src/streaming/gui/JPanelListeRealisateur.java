@@ -38,7 +38,7 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
 
     public JPanelListeRealisateur() {
         initComponents();
-        rafraichirJTable();
+        
     }
 
     /**
@@ -103,6 +103,7 @@ public class JPanelListeRealisateur extends javax.swing.JPanel {
     private void jbNewRealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewRealActionPerformed
         // Ajout d'un nouveau réalisateur
              
+        jDialogEditRealisateur.rafraichir();
         jDialogEditRealisateur.setJpListeReal(this);        
         jDialogEditRealisateur.setVisible(true);
         

@@ -20,6 +20,9 @@ import org.springframework.stereotype.Component;
 public class JFramePrincipale extends javax.swing.JFrame {
     
     @Autowired
+    private JPanelListeSerie jpListeFilm;
+    
+    @Autowired
     private JPanelListeRealisateur jPanelListeRealisateur;
 
     @Autowired
@@ -143,8 +146,9 @@ public class JFramePrincipale extends javax.swing.JFrame {
     private void jbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSerieActionPerformed
         // Accés à la catégorie série
         supprimerPanneaux();
-
-        jpCentral = new JPanelListeSerie();
+        
+        jpListeFilm.rafraichirJTable();
+        jpCentral = jpListeFilm;
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
 
@@ -171,6 +175,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
         // Accés à la catégorie réalisateur
         supprimerPanneaux();
 
+        jPanelListeRealisateur.rafraichirJTable();
         jpCentral = jPanelListeRealisateur;
         add(jpCentral, BorderLayout.CENTER);
         this.pack();

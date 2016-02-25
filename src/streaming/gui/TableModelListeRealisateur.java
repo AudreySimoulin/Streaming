@@ -17,42 +17,46 @@ import streaming.service.RealisateurService;
  * @author admin
  */
 @Component
-public class TableModelListeRealisateur extends DefaultTableModel{
-    
+public class TableModelListeRealisateur extends DefaultTableModel {
+
     private List<Realisateur> realisateur = null;
     private int nbRealisateur = 0;
     @Autowired
-    private RealisateurService rserv ;
+    private RealisateurService rserv;
 
     public List<Realisateur> getRealisateur() {
         return realisateur;
     }
-    
-    public TableModelListeRealisateur(){
-        setColumnIdentifiers(new String[] {"ID", "Nom", "Prénom"});
+
+    public void rafraichir() {
         realisateur = rserv.listerTous();
         nbRealisateur = realisateur.size();
     }
-    
+
+    public TableModelListeRealisateur() {
+        setColumnIdentifiers(new String[]{"ID", "Nom", "Prénom"});
+
+    }
+
     @Override
-    public int getRowCount(){
+    public int getRowCount() {
         return nbRealisateur;
     }
-    
+
     @Override
-    public Object getValueAt(int row, int column){
+    public Object getValueAt(int row, int column) {
         Realisateur r = realisateur.get(row);
-        
-        if(column == 0){
+
+        if (column == 0) {
             return r.getId();
         }
-        if(column == 1){
+        if (column == 1) {
             return r.getNom();
         }
-        if(column == 2){
+        if (column == 2) {
             return r.getPrenom();
         }
         return "***ERROR***";
     }
-    
+
 }

@@ -27,7 +27,7 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     @Autowired
     private LienService lserv;
     
-    private List<Lien> listeLiens = new ArrayList<>();
+//    private List<Lien> listeLiens = new ArrayList<>();
     
     private Film filmSelect = new Film();
 
@@ -45,13 +45,17 @@ public class JDialogAfficheLiens extends javax.swing.JDialog {
     public JDialogAfficheLiens(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        rafraichirJTable();
-        listeLiens = lserv.listerTous();
+        
+        
     }
     
-    public void rafraichirJTable(){        
+    public void rafraichirJTable(){
+//       listeLiens = lserv.listerTous();
+       tbModelListeLiens.setFilmSelect(filmSelect);
        jTableLiens.setModel(tbModelListeLiens);
        jTableLiens.repaint();
+       
+       
     }
 
     /**

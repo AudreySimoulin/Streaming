@@ -24,7 +24,15 @@ public class TableModeListelLiens extends DefaultTableModel{
     
    
 
-private Film f =new Film();
+private Film filmSelect = new Film();
+
+    public Film getFilmSelect() {
+        return filmSelect;
+    }
+
+    public void setFilmSelect(Film filmSelect) {
+        this.filmSelect = filmSelect;
+    }
     
      
     private List<Lien> liens = null;   
@@ -36,7 +44,7 @@ private Film f =new Film();
     
     public TableModeListelLiens(){
         setColumnIdentifiers(new String[]{"ID","URL"});        
-        liens=f.getListeLiens();
+        liens=filmSelect.getListeLiens();
         nbLiens = liens.size();
     }
     

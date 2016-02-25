@@ -36,7 +36,7 @@ public class JPanelListeSerie extends javax.swing.JPanel {
 
     public JPanelListeSerie() {
         initComponents();
-        rafraichirJTable();
+        
     }
 
     /**
@@ -99,6 +99,7 @@ public class JPanelListeSerie extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNewSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewSerieActionPerformed
+        jDialogEditSerie.rafraichir();
         jDialogEditSerie.setJpSerie(this);
         jDialogEditSerie.setVisible(true); //Affiche boite de dialogue
     }//GEN-LAST:event_jbNewSerieActionPerformed

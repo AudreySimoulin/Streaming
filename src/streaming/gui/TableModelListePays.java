@@ -21,7 +21,7 @@ public class TableModelListePays extends DefaultTableModel {
 
     private List<Pays> pays = null;
     private int nbPays = 0;
-    
+
     @Autowired
     private PaysService pserv;
 
@@ -29,10 +29,14 @@ public class TableModelListePays extends DefaultTableModel {
         return pays;
     }
 
-    public TableModelListePays() {
-        setColumnIdentifiers(new String[]{"ID", "Nom"});
+    public void rafraichir() {
         pays = pserv.listerTous();
         nbPays = pays.size();
+    }
+
+    public TableModelListePays() {
+        setColumnIdentifiers(new String[]{"ID", "Nom"});
+
     }
 
     @Override
@@ -49,7 +53,7 @@ public class TableModelListePays extends DefaultTableModel {
         }
 
         if (column == 1) {
-           return p.getNom();
+            return p.getNom();
         }
 
         return "***ERROR***";

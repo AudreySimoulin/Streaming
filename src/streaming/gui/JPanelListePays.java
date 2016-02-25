@@ -21,13 +21,16 @@ public class JPanelListePays extends javax.swing.JPanel {
     private TableModelListePays tModelListePays = null;
     @Autowired
     private PaysService pserv ;
+    
+    @Autowired
+    private JDialogEditPays jdPays;
 
     /**
      * Creates new form JPanelListePays
      */
     public JPanelListePays() {
         initComponents();
-        rafraichirJTable();
+        
     }
 
     public void rafraichirJTable() {
@@ -97,7 +100,10 @@ public class JPanelListePays extends javax.swing.JPanel {
 
     private void jbNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauActionPerformed
 
-        new JDialogEditPays(null, true, this).setVisible(true);
+        jdPays.rafraichir();
+        jdPays.setJpPays(this);
+        jdPays.setVisible(true);
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbNouveauActionPerformed

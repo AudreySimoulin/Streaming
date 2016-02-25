@@ -25,7 +25,12 @@ public class JDialogEditRealisateur extends javax.swing.JDialog {
     private JPanelListeRealisateur jpListeReal ;
     
     @Autowired
-    private RealisateurService rserv ;
+    private RealisateurService rserv ;    
+    
+    public void rafraichir (){
+        setJpListeReal(jpListeReal);
+    }
+    
     
     public JDialogEditRealisateur() {
         setModal(true);
