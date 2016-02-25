@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Film;
 import streaming.entity.Realisateur;
 import streaming.service.FilmService;
@@ -18,11 +19,12 @@ import streaming.service.FilmService;
  *
  * @author admin
  */
+@Component
 public class TableModelListeFilm extends DefaultTableModel {
 
     private List<Film> film = null;
     private int nbFilm = 0;
-    
+
     @Autowired
     private FilmService fserv;
 
@@ -30,10 +32,13 @@ public class TableModelListeFilm extends DefaultTableModel {
         return film;
     }
 
-    public TableModelListeFilm() {
-        setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Réalisateur", "Synopsis", "Genre"});
+    public void rafraichir() {
         film = fserv.listerTous();
         nbFilm = film.size();
+    }
+
+    public TableModelListeFilm() {
+        setColumnIdentifiers(new String[]{"ID", "Titre", "Année de production", "Pays", "Réalisateur", "Synopsis", "Genre"});
     }
 
     @Override
@@ -62,8 +67,11 @@ public class TableModelListeFilm extends DefaultTableModel {
         }
 
         if (column == 4) {
-            for (Realisateur r : f.getListeRealisateurs())
-            return r.getPrenom()+" "+r.getNom();
+            String strReal="";
+            for (Realisateur r : f.getListeRealisateurs()) {
+                strReal += r.getPrenom() + " " + r.getNom() + " " ;
+            }
+            return strReal;
         }
 
         if (column == 5) {

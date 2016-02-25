@@ -8,6 +8,7 @@ package streaming.gui;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Genre;
 import streaming.service.GenreService;
 
@@ -15,22 +16,26 @@ import streaming.service.GenreService;
  *
  * @author admin
  */
+@Component
 public class JPanelListeGenre extends javax.swing.JPanel {
 
-    private TableModelListeGenre tbListeGenre = null;
-    
     @Autowired
     private GenreService gserv;
 
+    @Autowired
+    private TableModelListeGenre tbListeGenre;
+    
+    @Autowired
+    private JDialogEditGenre jDialogEditGenre;
+
     public void rafraichirJTable() {
-        tbListeGenre = new TableModelListeGenre();
         jTableGenre.setModel(tbListeGenre);
         jTableGenre.repaint();
     }
 
     public JPanelListeGenre() {
         initComponents();
-        rafraichirJTable();
+//        rafraichirJTable();
     }
 
     /**
@@ -94,24 +99,24 @@ public class JPanelListeGenre extends javax.swing.JPanel {
 
     private void jbNewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewGenreActionPerformed
         // TODO add your handling code here:
-        new JDialogEditGenre(null, true, this).setVisible(true);
+       
     }//GEN-LAST:event_jbNewGenreActionPerformed
 
     private void jbSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerActionPerformed
         // TODO add your handling code here:
-        
+
         int i = jTableGenre.getSelectedRow();
-        if(i == -1){
+        if (i == -1) {
             return;
         }
-        
+
         Genre g = tbListeGenre.getGenre().get(i);
         Long idGenre = g.getId();
-        
+
         gserv.supprimer(idGenre);
-        
+
         rafraichirJTable();
-        
+
     }//GEN-LAST:event_jbSupprimerActionPerformed
 
 

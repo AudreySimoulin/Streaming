@@ -8,6 +8,7 @@ package streaming.gui;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import streaming.entity.Film;
 import streaming.service.FilmService;
 
@@ -15,19 +16,27 @@ import streaming.service.FilmService;
  *
  * @author admin
  */
+
+@Component
 public class JPanelListeFilm extends javax.swing.JPanel {
 
-    private TableModelListeFilm tModelListeFilm = null;
-    
+   
     @Autowired
     private FilmService fserv;
+    
+    @Autowired
+    private TableModelListeFilm tModelListeFilm;
+    
+    @Autowired
+    private JDialogEditFilm jDialogueEditFilm;
           
 
     /**
-     * Creates new form JPanelListeFilm
+     * Rafraichit le tableau avec l'état actuel en BD
      */
-    public void rafraichirJTable() {
-        tModelListeFilm = new TableModelListeFilm();
+    public void rafraichir() {
+        tModelListeFilm.rafraichir();
+        
         jTableFilm.setModel(tModelListeFilm);
         jTableFilm.repaint();
       
@@ -35,7 +44,7 @@ public class JPanelListeFilm extends javax.swing.JPanel {
 
     public JPanelListeFilm() {
         initComponents();
-        rafraichirJTable();
+//        rafraichirJTable();
 
     }
 
@@ -119,16 +128,19 @@ public class JPanelListeFilm extends javax.swing.JPanel {
         Long filmId = f.getId();
 
         fserv.supprimer(filmId);
-        rafraichirJTable();
+        rafraichir();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerFilmActionPerformed
 
     
     private void jbNouveauFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauFilmActionPerformed
-        new JDialogEditFilm(null, true, this).setVisible(true);//Affiche boite de dialogue
+        
+        jDialogueEditFilm.rafraichir();
+        jDialogueEditFilm.setjPanelListeFilm(this);
+        jDialogueEditFilm.setVisible(true);//Affiche boite de dialogue
+        
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbNouveauFilmActionPerformed
 
     private void jbLiensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLiensActionPerformed

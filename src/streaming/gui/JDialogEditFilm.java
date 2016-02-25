@@ -15,6 +15,7 @@ import javax.persistence.Persistence;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import streaming.entity.Film;
 import streaming.entity.Genre;
@@ -30,17 +31,18 @@ import streaming.service.RealisateurService;
  *
  * @author admin
  */
+@Component
 public class JDialogEditFilm extends javax.swing.JDialog {
 
     @Autowired
     private FilmService fserv;
-    
+
     @Autowired
     private GenreService gserv;
-    
+
     @Autowired
     private PaysService pserv;
-    
+
     @Autowired
     private RealisateurService rserv;
 
@@ -48,30 +50,32 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     private List<Genre> listeGenre = new ArrayList<Genre>();
     private List<Realisateur> listeReal = new ArrayList<>();
 
-    private JPanelListeFilm jpFilm = null;
-    
+    @Autowired
+    private JPanelListeFilm jPanelListeFilm;
+
     private DefaultListModel modelList = new DefaultListModel();
+
+    public void setjPanelListeFilm(JPanelListeFilm jPanelListeFilm) {
+        this.jPanelListeFilm = jPanelListeFilm;
+    }
 
     /**
      * Creates new form JDialogEditFilm
      */
-    public JDialogEditFilm(java.awt.Frame parent, boolean modal, JPanelListeFilm jp) {
-        super(parent, modal);
-        initComponents();
+    public void rafraichir() {
         listePays = pserv.listerTous();
         listeGenre = gserv.listerTous();
         listeReal = rserv.listerTous();
-        
+
         initialiseComboBoxGenre();
         initialiseComboBoxPays();
         initialiseJListReal();
 
-        this.jpFilm = jp;
-
+        this.setjPanelListeFilm(jPanelListeFilm);
     }
 
-    private JDialogEditFilm(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public JDialogEditFilm() {
+        this.setModal(true);
         initComponents();
     }
 
@@ -80,7 +84,6 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         for (Pays p : listePays) {
             jComboBoxPays.addItem(p.getNom());
         }
-
     }
 
     public void initialiseComboBoxGenre() {
@@ -88,17 +91,16 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         for (Genre g : listeGenre) {
             jComboBoxGenre.addItem(g.getNom());
         }
-
     }
-    
-    public void initialiseJListReal(){
+
+    public void initialiseJListReal() {
         jListReal.removeAll();
-       for (Realisateur r : listeReal){
-           modelList.addElement(r.getPrenom()+" "+r.getNom());
-       }          
-       
-       jListReal.setModel(modelList);
-           
+        for (Realisateur r : listeReal) {
+            modelList.addElement(r.getPrenom() + " " + r.getNom());
+        }
+
+        jListReal.setModel(modelList);
+
     }
 
     /**
@@ -327,14 +329,11 @@ public class JDialogEditFilm extends javax.swing.JDialog {
         Film f = new Film();
         f.setAnnee(Long.parseLong(jTextAnnee.getText()));
         f.setTitre(jTextTitre.getText());
-        f.setSynopsis(jTextSynopsis.getText());       
-        
-       
-        for (int i : jListReal.getSelectedIndices()){
+        f.setSynopsis(jTextSynopsis.getText());
+
+        for (int i : jListReal.getSelectedIndices()) {
             f.getListeRealisateurs().add(listeReal.get(i));
         }
-        
-                
 
         for (Pays p : listePays) {
             if (p.getNom() == jComboBoxPays.getSelectedItem()) {
@@ -352,10 +351,10 @@ public class JDialogEditFilm extends javax.swing.JDialog {
 
             // TODO add your handling code here:
         } catch (SynopsisVideException ex) {
-            
+
         }
-        
-        jpFilm.rafraichirJTable();
+
+        jPanelListeFilm.rafraichir();
         this.setVisible(false);//Ferme Fenetre
         this.dispose();//Libère mémoire
 
@@ -373,52 +372,6 @@ public class JDialogEditFilm extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogEditFilm.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogEditFilm dialog = new JDialogEditFilm(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAjouter;

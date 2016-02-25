@@ -7,6 +7,7 @@ package streaming.gui;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.stereotype.Component;
@@ -18,10 +19,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class JFramePrincipale extends javax.swing.JFrame {
 
+    @Autowired
+    private JPanelListeFilm jPanelListeFilm;
+    
+    @Autowired
+    private JPanelListeGenre jPanelListeGenre;
+
     /**
      * Creates new form JFramePrincipale
      */
-    JPanel jpCentral = null;
+    private JPanel jpCentral = null;
 
     public JFramePrincipale() {
         initComponents();
@@ -121,8 +128,11 @@ public class JFramePrincipale extends javax.swing.JFrame {
         // Accés à la catégorie film
         supprimerPanneaux();
 
-        jpCentral = new JPanelListeFilm();
+        jpCentral = jPanelListeFilm;
         add(jpCentral, BorderLayout.CENTER);
+        
+        jPanelListeFilm.rafraichir();
+        
         this.pack();
 
     }//GEN-LAST:event_jbFilmActionPerformed
@@ -141,7 +151,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
         // Accés à la catégorie genre
         supprimerPanneaux();
 
-        jpCentral = new JPanelListeGenre();
+        jpCentral = jPanelListeGenre;
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
     }//GEN-LAST:event_jbGenreActionPerformed
@@ -196,7 +206,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
 
                 ApplicationContext context = new FileSystemXmlApplicationContext("file:/C:\\Users\\admin\\Documents\\NetBeansProjects\\Streaming\\application-context.xml");
                 JFramePrincipale jfp = context.getBean(JFramePrincipale.class);
-                jfp.setSize(800,600);
+                jfp.setSize(800, 600);
                 jfp.setVisible(true);
 
             }
