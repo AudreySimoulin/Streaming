@@ -137,10 +137,10 @@ public class JFramePrincipale extends javax.swing.JFrame {
         jpCentral = jPanelListeFilm;
         add(jpCentral, BorderLayout.CENTER);
         
+        jPanelListeFilm.setjFrameP(this);
         jPanelListeFilm.rafraichir();
+               
         
-        this.pack();
-
     }//GEN-LAST:event_jbFilmActionPerformed
 
     private void jbSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSerieActionPerformed

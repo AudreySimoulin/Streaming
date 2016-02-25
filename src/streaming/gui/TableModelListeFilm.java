@@ -35,6 +35,7 @@ public class TableModelListeFilm extends DefaultTableModel {
     public void rafraichir() {
         film = fserv.listerTous();
         nbFilm = film.size();
+        System.out.println("=>" + nbFilm);
     }
 
     public TableModelListeFilm() {

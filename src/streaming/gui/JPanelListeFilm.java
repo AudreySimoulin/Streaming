@@ -32,14 +32,24 @@ public class JPanelListeFilm extends javax.swing.JPanel {
     @Autowired
     private JDialogEditFilm jDialogueEditFilm;
          
+    private JFramePrincipale jFrameP;
+
+    public void setjFrameP(JFramePrincipale jFrameP) {
+        this.jFrameP = jFrameP;
+    }
+    
     /**
      * Rafraichit le tableau avec l'état actuel en BD
      */
+    
+    
     public void rafraichir() {
         tModelListeFilm.rafraichir();
         
         jTableFilm.setModel(tModelListeFilm);
         jTableFilm.repaint();
+        
+        jFrameP.repaint();
 
     }
 
