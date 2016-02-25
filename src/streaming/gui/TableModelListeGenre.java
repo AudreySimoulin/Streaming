@@ -16,7 +16,6 @@ import streaming.service.GenreService;
  *
  * @author admin
  */
-
 @Component
 public class TableModelListeGenre extends DefaultTableModel{
     

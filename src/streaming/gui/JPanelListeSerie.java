@@ -17,13 +17,18 @@ import streaming.service.SerieService;
  */
 public class JPanelListeSerie extends javax.swing.JPanel {
     
-    private TableModelListeSerie tbListeSerie = null;
+    @Autowired
+    private JDialogEditSerie jDialogEditSerie;
+    
+    @Autowired
+    private TableModelListeSerie tbListeSerie ;
     
     @Autowired
     private SerieService serieserv;
     
+  
+    
     public void rafraichirJTable(){
-        tbListeSerie = new TableModelListeSerie();
         jTableSerie.setModel(tbListeSerie);
         jTableSerie.repaint();
     }
@@ -94,7 +99,8 @@ public class JPanelListeSerie extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbNewSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewSerieActionPerformed
-        new JDialogEditSerie(null, true, this).setVisible(true); //Affiche boite de dialogue
+        jDialogEditSerie.setJpSerie(this);
+        jDialogEditSerie.setVisible(true); //Affiche boite de dialogue
     }//GEN-LAST:event_jbNewSerieActionPerformed
 
     private void jbSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerActionPerformed

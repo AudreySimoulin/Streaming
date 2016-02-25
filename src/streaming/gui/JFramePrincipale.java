@@ -18,6 +18,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class JFramePrincipale extends javax.swing.JFrame {
+    
+    @Autowired
+    private JPanelListeRealisateur jPanelListeRealisateur;
 
     @Autowired
     private JPanelListeFilm jPanelListeFilm;
@@ -168,7 +171,7 @@ public class JFramePrincipale extends javax.swing.JFrame {
         // Accés à la catégorie réalisateur
         supprimerPanneaux();
 
-        jpCentral = new JPanelListeRealisateur();
+        jpCentral = jPanelListeRealisateur;
         add(jpCentral, BorderLayout.CENTER);
         this.pack();
     }//GEN-LAST:event_jbRealActionPerformed
