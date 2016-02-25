@@ -28,14 +28,15 @@ public class JPanelListeGenre extends javax.swing.JPanel {
     @Autowired
     private JDialogEditGenre jDialogEditGenre;
 
-    public void rafraichirJTable() {
+    public void rafraichir() {
+        tbListeGenre.rafraichir();
         jTableGenre.setModel(tbListeGenre);
         jTableGenre.repaint();
     }
 
     public JPanelListeGenre() {
         initComponents();
-//        rafraichirJTable();
+
     }
 
     /**
@@ -99,6 +100,12 @@ public class JPanelListeGenre extends javax.swing.JPanel {
 
     private void jbNewGenreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNewGenreActionPerformed
         // TODO add your handling code here:
+                
+        jDialogEditGenre.rafraichir();
+        jDialogEditGenre.setjPanelListeGenre(this);
+        jDialogEditGenre.setVisible(true);//Affiche boite de dialogue
+        
+
        
     }//GEN-LAST:event_jbNewGenreActionPerformed
 
@@ -115,7 +122,7 @@ public class JPanelListeGenre extends javax.swing.JPanel {
 
         gserv.supprimer(idGenre);
 
-        rafraichirJTable();
+        rafraichir();
 
     }//GEN-LAST:event_jbSupprimerActionPerformed
 

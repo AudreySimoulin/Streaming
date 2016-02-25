@@ -36,7 +36,6 @@ public class TableModelListePays extends DefaultTableModel {
 
     public TableModelListePays() {
         setColumnIdentifiers(new String[]{"ID", "Nom"});
-
     }
 
     @Override

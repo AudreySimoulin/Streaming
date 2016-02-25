@@ -20,7 +20,6 @@ public class JDialogEditGenre extends javax.swing.JDialog {
     /**
      * Creates new form JDialogGenre
      */
-    private JPanelListeGenre jpListeGenre = null;
 
     @Autowired
     private GenreService gserv;
@@ -32,12 +31,14 @@ public class JDialogEditGenre extends javax.swing.JDialog {
         this.jPanelListeGenre = jPanelListeGenre;
     }
 
-    public JDialogEditGenre() {
-        initComponents();
-        this.setModal(true);
+    public void rafraichir() {
         this.setjPanelListeGenre(jPanelListeGenre);
     }
 
+    public JDialogEditGenre() {
+        initComponents();
+        this.setModal(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,7 +144,7 @@ public class JDialogEditGenre extends javax.swing.JDialog {
 
         gserv.ajouter(g);
 
-        jpListeGenre.rafraichirJTable();
+        jPanelListeGenre.rafraichir();
         this.setVisible(false);//Ferme Fenetre
         this.dispose();//Libère mémoire
     }//GEN-LAST:event_jButton1ActionPerformed

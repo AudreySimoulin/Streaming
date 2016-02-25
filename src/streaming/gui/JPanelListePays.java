@@ -11,19 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
 import streaming.service.PaysService;
 
-
 /**
  *
  * @author admin
  */
 public class JPanelListePays extends javax.swing.JPanel {
 
-    private TableModelListePays tModelListePays = null;
     @Autowired
     private PaysService pserv ;
     
     @Autowired
     private JDialogEditPays jdPays;
+    
+    @Autowired
+    private TableModelListePays tModelPays;
 
     /**
      * Creates new form JPanelListePays
@@ -33,9 +34,9 @@ public class JPanelListePays extends javax.swing.JPanel {
         
     }
 
-    public void rafraichirJTable() {
-        tModelListePays = new TableModelListePays();
-        jTablePays.setModel(tModelListePays);
+    public void rafraichir() {
+        tModelPays.rafraichir();
+        jTablePays.setModel(tModelPays);
         jTablePays.repaint();
     }
 
@@ -105,7 +106,7 @@ public class JPanelListePays extends javax.swing.JPanel {
         jdPays.setVisible(true);
         
 
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbNouveauActionPerformed
 
     private void jbSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerActionPerformed
@@ -115,12 +116,12 @@ public class JPanelListePays extends javax.swing.JPanel {
             return;
         }
 
-        Pays p = tModelListePays.getPays().get(i);
+        Pays p = tModelPays.getPays().get(i);
         Long paysId = p.getId();
-        
+
         pserv.supprimer(paysId);
 
-        rafraichirJTable();
+        rafraichir();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerActionPerformed
 

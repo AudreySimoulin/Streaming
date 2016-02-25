@@ -155,7 +155,7 @@ public class JDialogEditPays extends javax.swing.JDialog {
         Pays p = new Pays();
         p.setNom(jTextNom.getText());
         pserv.ajouter(p);
-        jpPays.rafraichirJTable();//Rafraichit Table JPanel
+        jpPays.rafraichir();//Rafraichit Table JPanel
         this.setVisible(false);//Ferme Fenetre
         this.dispose();//Libère mémoire
 

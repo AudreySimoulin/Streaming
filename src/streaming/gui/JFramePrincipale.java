@@ -160,6 +160,9 @@ public class JFramePrincipale extends javax.swing.JFrame {
 
         jpCentral = jPanelListeGenre;
         add(jpCentral, BorderLayout.CENTER);
+        
+        jPanelListeGenre.rafraichir();
+        
         this.pack();
     }//GEN-LAST:event_jbGenreActionPerformed
     private void jbPaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPaysActionPerformed
@@ -168,6 +171,9 @@ public class JFramePrincipale extends javax.swing.JFrame {
 
         jpCentral = new JPanelListePays();
         add(jpCentral, BorderLayout.CENTER);
+        
+        jPanelListeGenre.rafraichir();
+        
         this.pack();
     }//GEN-LAST:event_jbPaysActionPerformed
 
