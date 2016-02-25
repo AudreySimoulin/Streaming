@@ -11,26 +11,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import streaming.entity.Pays;
 import streaming.service.PaysService;
 
-
 /**
  *
  * @author admin
  */
 public class JPanelListePays extends javax.swing.JPanel {
 
-    private TableModelListePays tModelListePays = null;
     @Autowired
-    private PaysService pserv ;
+    private TableModelListePays tModelListePays;
+
+    @Autowired
+    private PaysService pserv;
+
+    @Autowired
+    private JDialogEditPays jDialogEditPays;
 
     /**
      * Creates new form JPanelListePays
      */
     public JPanelListePays() {
         initComponents();
-        rafraichirJTable();
     }
 
-    public void rafraichirJTable() {
+    public void rafraichir() {
         tModelListePays = new TableModelListePays();
         jTablePays.setModel(tModelListePays);
         jTablePays.repaint();
@@ -97,9 +100,10 @@ public class JPanelListePays extends javax.swing.JPanel {
 
     private void jbNouveauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNouveauActionPerformed
 
-        new JDialogEditPays(null, true, this).setVisible(true);
+                
+        jDialogEditPays.setVisible(true);//Affiche boite de dialogue
 
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbNouveauActionPerformed
 
     private void jbSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSupprimerActionPerformed
@@ -111,10 +115,10 @@ public class JPanelListePays extends javax.swing.JPanel {
 
         Pays p = tModelListePays.getPays().get(i);
         Long paysId = p.getId();
-        
+
         pserv.supprimer(paysId);
 
-        rafraichirJTable();
+        rafraichir();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSupprimerActionPerformed
 
